@@ -1,0 +1,219 @@
+.stall-booking {
+  width: 100%;
+}
+
+.stall-booking__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.stall-booking__card {
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.stall-booking--light .stall-booking__card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.stall-booking--light .stall-booking__card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-gold-400);
+  box-shadow: var(--shadow-lg);
+}
+
+.stall-booking--dark .stall-booking__card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stall-booking--dark .stall-booking__card:hover {
+  background: rgba(200, 155, 60, 0.08);
+  border-color: rgba(200, 155, 60, 0.4);
+  transform: translateY(-6px);
+}
+
+.stall-booking__card--featured {
+  border: 2px solid var(--color-gold-500) !important;
+  box-shadow: 0 12px 35px rgba(200, 155, 60, 0.15) !important;
+}
+
+.stall-booking__card-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: linear-gradient(135deg, #DFBA61, #C89B3C);
+  color: #0E1215;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+}
+
+.stall-booking__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stall-booking__icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(200, 155, 60, 0.12);
+  color: var(--color-gold-600);
+  border: 1px solid rgba(200, 155, 60, 0.3);
+}
+
+.stall-booking--dark .stall-booking__icon-box {
+  color: var(--color-gold-300);
+}
+
+.stall-booking__numbers {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-gold-600);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: block;
+}
+
+.stall-booking--dark .stall-booking__numbers {
+  color: var(--color-gold-300);
+}
+
+.stall-booking__title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stall-booking--light .stall-booking__title {
+  color: var(--color-dark-900);
+}
+
+.stall-booking--dark .stall-booking__title {
+  color: var(--color-white);
+}
+
+.stall-booking__dimension-box {
+  background: rgba(200, 155, 60, 0.08);
+  border: 1px dashed rgba(200, 155, 60, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stall-booking__dim-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.stall-booking--dark .stall-booking__dim-label {
+  color: var(--color-text-light-muted);
+}
+
+.stall-booking__dimension {
+  font-size: 1.25rem;
+  color: var(--color-gold-600);
+  font-weight: 800;
+}
+
+.stall-booking--dark .stall-booking__dimension {
+  color: var(--color-gold-300);
+}
+
+.stall-booking__description {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.stall-booking--light .stall-booking__description {
+  color: var(--color-text-muted);
+}
+
+.stall-booking--dark .stall-booking__description {
+  color: var(--color-text-light-muted);
+}
+
+.stall-booking__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  margin-top: auto;
+}
+
+.stall-booking__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.stall-booking--light .stall-booking__features li {
+  color: var(--color-text-main);
+}
+
+.stall-booking--dark .stall-booking__features li {
+  color: var(--color-text-light);
+}
+
+.stall-booking__check {
+  color: #25D366;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.stall-booking__action {
+  margin-top: 1rem;
+}
+
+.stall-booking__notice {
+  text-align: center;
+  padding: 1.25rem 2rem;
+  background: rgba(200, 155, 60, 0.08);
+  border: 1px solid rgba(200, 155, 60, 0.25);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+}
+
+.stall-booking--light .stall-booking__notice {
+  color: var(--color-text-main);
+}
+
+.stall-booking--dark .stall-booking__notice {
+  color: var(--color-text-light);
+}
+
+@media (max-width: 1024px) {
+  .stall-booking__grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

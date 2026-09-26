@@ -1,0 +1,120 @@
+.sama-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.sama-btn:active {
+  transform: scale(0.98);
+}
+
+.sama-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Sizes */
+.sama-btn--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.sama-btn--md {
+  padding: 0.75rem 1.6rem;
+  font-size: 0.95rem;
+}
+
+.sama-btn--lg {
+  padding: 0.95rem 2.2rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+}
+
+.sama-btn--full {
+  width: 100%;
+}
+
+/* Primary (Gold luxury) */
+.sama-btn--primary {
+  background: linear-gradient(135deg, #DFBA61 0%, #C89B3C 50%, #B28325 100%);
+  color: #0E1215;
+  box-shadow: 0 4px 18px rgba(200, 155, 60, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sama-btn--primary:hover {
+  background: linear-gradient(135deg, #F0CF78 0%, #D4AF37 50%, #C89B3C 100%);
+  box-shadow: 0 8px 26px rgba(200, 155, 60, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Secondary (Deep Charcoal / Glass) */
+.sama-btn--secondary {
+  background: var(--color-dark-800);
+  color: var(--color-white);
+  border: 1px solid var(--color-dark-600);
+}
+
+.sama-btn--secondary:hover {
+  background: var(--color-dark-700);
+  border-color: var(--color-gold-500);
+  color: var(--color-gold-300);
+  transform: translateY(-2px);
+}
+
+/* Outline (Gold line) */
+.sama-btn--outline {
+  background: transparent;
+  color: inherit;
+  border: 1.5px solid var(--color-gold-500);
+}
+
+.sama-btn--outline:hover {
+  background: rgba(200, 155, 60, 0.12);
+  border-color: var(--color-gold-400);
+  transform: translateY(-2px);
+}
+
+/* WhatsApp (Emerald Brand) */
+.sama-btn--whatsapp {
+  background: #25D366;
+  color: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+}
+
+.sama-btn--whatsapp:hover {
+  background: #20BD5A;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Ghost */
+.sama-btn--ghost {
+  background: transparent;
+  color: inherit;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.sama-btn--ghost:hover {
+  color: var(--color-gold-500);
+  background: rgba(200, 155, 60, 0.08);
+}
+
+.sama-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

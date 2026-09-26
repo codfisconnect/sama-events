@@ -1,0 +1,12 @@
+.sama-app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--color-cream-100);
+}
+
+.sama-app-main {
+  flex-grow: 1;
+  width: 100%;
+}

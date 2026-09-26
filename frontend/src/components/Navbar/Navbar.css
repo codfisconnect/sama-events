@@ -1,0 +1,210 @@
+.sama-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  z-index: 900;
+  transition: all var(--transition-normal);
+  background: rgba(14, 18, 21, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sama-navbar--scrolled {
+  height: 72px;
+  background: rgba(14, 18, 21, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-bottom-color: rgba(200, 155, 60, 0.25);
+}
+
+.sama-navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.sama-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.sama-navbar__logo-crest {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(200, 155, 60, 0.25), rgba(200, 155, 60, 0.05));
+  border: 1px solid var(--color-gold-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold-300);
+  box-shadow: 0 0 15px rgba(200, 155, 60, 0.2);
+  transition: all var(--transition-normal);
+}
+
+.sama-navbar__brand:hover .sama-navbar__logo-crest {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 0 22px rgba(200, 155, 60, 0.4);
+}
+
+.sama-navbar__brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sama-navbar__brand-name {
+  color: var(--color-white);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.sama-navbar__brand-tagline {
+  color: var(--color-gold-400);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+}
+
+/* Nav links */
+.sama-navbar__nav {
+  display: flex;
+}
+
+.sama-navbar__list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sama-navbar__link {
+  color: var(--color-text-light-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color var(--transition-fast);
+}
+
+.sama-navbar__link:hover {
+  color: var(--color-white);
+}
+
+.sama-navbar__link--active {
+  color: var(--color-gold-300);
+  font-weight: 600;
+}
+
+.sama-navbar__link--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-gold-400);
+  border-radius: 2px;
+}
+
+/* Actions */
+.sama-navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sama-navbar__hamburger {
+  display: none;
+  color: var(--color-white);
+  padding: 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+.sama-navbar__hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Drawer */
+.sama-navbar__mobile-drawer {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 14, 17, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-normal);
+  z-index: 899;
+  border-top: 1px solid rgba(200, 155, 60, 0.2);
+}
+
+.sama-navbar__mobile-drawer--open {
+  transform: translateX(0);
+}
+
+.sama-navbar__mobile-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.sama-navbar__mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sama-navbar__mobile-link {
+  font-size: 1.4rem;
+  font-family: var(--font-serif);
+  color: var(--color-text-light);
+  display: block;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sama-navbar__mobile-link--active {
+  color: var(--color-gold-300);
+  border-bottom-color: var(--color-gold-400);
+}
+
+.sama-navbar__mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.sama-navbar__mobile-footer {
+  text-align: center;
+  padding-top: 1.5rem;
+  color: var(--color-text-light-muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 992px) {
+  .sama-navbar__nav {
+    display: none;
+  }
+  .sama-navbar__cta-btn {
+    display: none;
+  }
+  .sama-navbar__hamburger {
+    display: flex;
+  }
+}

@@ -1,0 +1,100 @@
+.section-heading {
+  margin-bottom: 3rem;
+  position: relative;
+  max-width: 820px;
+}
+
+.section-heading--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading--left {
+  text-align: left;
+  margin-right: auto;
+}
+
+.section-heading--right {
+  text-align: right;
+  margin-left: auto;
+}
+
+.section-heading__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.85rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+}
+
+.section-heading--light .section-heading__badge {
+  background: rgba(200, 155, 60, 0.12);
+  color: var(--color-gold-600);
+  border: 1px solid rgba(200, 155, 60, 0.35);
+}
+
+.section-heading--dark .section-heading__badge {
+  background: rgba(200, 155, 60, 0.18);
+  color: var(--color-gold-300);
+  border: 1px solid rgba(200, 155, 60, 0.45);
+}
+
+.section-heading__title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  letter-spacing: -0.015em;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.section-heading--light .section-heading__title {
+  color: var(--color-dark-900);
+}
+
+.section-heading--dark .section-heading__title {
+  color: var(--color-white);
+}
+
+.section-heading__subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 680px;
+}
+
+.section-heading--center .section-heading__subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading--light .section-heading__subtitle {
+  color: var(--color-text-muted);
+}
+
+.section-heading--dark .section-heading__subtitle {
+  color: var(--color-text-light-muted);
+}
+
+.section-heading__accent-line {
+  height: 3px;
+  width: 60px;
+  background: linear-gradient(90deg, #DFBA61, #C89B3C, transparent);
+  border-radius: 2px;
+}
+
+.section-heading--center .section-heading__accent-line {
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(90deg, transparent, #C89B3C, #DFBA61, transparent);
+  width: 80px;
+}
+
+.section-heading--right .section-heading__accent-line {
+  margin-left: auto;
+  background: linear-gradient(90deg, transparent, #C89B3C, #DFBA61);
+}

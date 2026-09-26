@@ -1,0 +1,221 @@
+.sama-footer {
+  background: var(--color-dark-950);
+  color: var(--color-text-light);
+  border-top: 1px solid rgba(200, 155, 60, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.sama-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-400), transparent);
+}
+
+.sama-footer__main {
+  padding-top: 4.5rem;
+  padding-bottom: 3.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1.2fr 1.4fr;
+  gap: 3rem;
+}
+
+/* Brand Col */
+.sama-footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.sama-footer__logo-crest {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(200, 155, 60, 0.15);
+  border: 1px solid var(--color-gold-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold-300);
+}
+
+.sama-footer__brand-title {
+  color: var(--color-white);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.sama-footer__description {
+  color: var(--color-text-light-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  max-width: 340px;
+}
+
+.sama-footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sama-footer__social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-dark-800);
+  border: 1px solid var(--color-dark-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light-muted);
+  transition: all var(--transition-fast);
+}
+
+.sama-footer__social-btn:hover {
+  color: var(--color-gold-300);
+  border-color: var(--color-gold-500);
+  background: var(--color-dark-700);
+  transform: translateY(-2px);
+}
+
+.sama-footer__social-btn--whatsapp:hover {
+  color: #FFFFFF;
+  background: #25D366;
+  border-color: #25D366;
+}
+
+/* Columns */
+.sama-footer__col-heading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 1.35rem;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+
+.sama-footer__col-heading::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--color-gold-400);
+  margin-top: 0.4rem;
+}
+
+.sama-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.sama-footer__link {
+  color: var(--color-text-light-muted);
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 0.2rem;
+  transition: all var(--transition-fast);
+}
+
+.sama-footer__link-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all var(--transition-fast);
+  color: var(--color-gold-400);
+}
+
+.sama-footer__link:hover {
+  color: var(--color-gold-300);
+  transform: translateX(4px);
+}
+
+.sama-footer__link:hover .sama-footer__link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Contact */
+.sama-footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.sama-footer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--color-text-light-muted);
+}
+
+.sama-footer__contact-item a:hover {
+  color: var(--color-gold-300);
+}
+
+.sama-footer__contact-icon {
+  color: var(--color-gold-400);
+  flex-shrink: 0;
+}
+
+.sama-footer__badge {
+  display: inline-block;
+  background: rgba(200, 155, 60, 0.1);
+  border: 1px dashed rgba(200, 155, 60, 0.35);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  color: var(--color-gold-300);
+  font-weight: 500;
+}
+
+/* Bottom */
+.sama-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.5rem 0;
+  font-size: 0.84rem;
+  color: var(--color-text-light-muted);
+}
+
+.sama-footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sama-footer__bottom-links {
+  font-style: italic;
+  color: var(--color-gold-400);
+}
+
+@media (max-width: 1024px) {
+  .sama-footer__main {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sama-footer__main {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+    padding-top: 3.5rem;
+  }
+  .sama-footer__bottom-inner {
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: center;
+  }
+}

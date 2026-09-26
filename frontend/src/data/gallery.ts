@@ -1,0 +1,116 @@
+import { GalleryImageItem } from '../types/gallery';
+import { noorERamzan1Images, noorERamzan2Images, futureEventImages } from './images';
+
+export const galleryData: GalleryImageItem[] = [
+  // Noor-E-Ramzan 1.0 (Previous Edition Experience)
+  {
+    id: 'gal-1',
+    url: noorERamzan1Images.hero,
+    title: 'Festive Illumination & Main Promenade',
+    category: 'Noor-E-Ramzan 1.0',
+    aspectRatio: 'wide',
+    caption: 'Atmospheric evening lighting and vibrant crowds at Noor-E-Ramzan 1.0.',
+    eventId: 'noor-e-ramzan-1',
+  },
+  {
+    id: 'gal-2',
+    url: noorERamzan1Images.crowdAtmosphere,
+    title: 'Thriving Community Gathering',
+    category: 'Noor-E-Ramzan 1.0',
+    aspectRatio: 'tall',
+    caption: 'Thousands of visitors and families enjoying the 1.0 festival ambiance.',
+    eventId: 'noor-e-ramzan-1',
+  },
+  {
+    id: 'gal-3',
+    url: noorERamzan1Images.foodCourt,
+    title: 'Aromatic Food Court & Live Counters',
+    category: 'Noor-E-Ramzan 1.0',
+    aspectRatio: 'square',
+    caption: 'Authentic Ramadan delicacies, kebabs, haleem, and desserts.',
+    eventId: 'noor-e-ramzan-1',
+  },
+  {
+    id: 'gal-4',
+    url: noorERamzan1Images.shoppingStalls,
+    title: 'Boutique Shopping Pavilions',
+    category: 'Noor-E-Ramzan 1.0',
+    aspectRatio: 'square',
+    caption: 'Handpicked ethnic wear, festive apparel, perfumes, and jewellery.',
+    eventId: 'noor-e-ramzan-1',
+  },
+  {
+    id: 'gal-5',
+    url: noorERamzan1Images.stageAndVibes,
+    title: 'Main Stage Atmosphere & Ceremonies',
+    category: 'Noor-E-Ramzan 1.0',
+    aspectRatio: 'wide',
+    caption: 'Community stage hosting announcements, guest visits, and awards.',
+    eventId: 'noor-e-ramzan-1',
+  },
+  {
+    id: 'gal-6',
+    url: noorERamzan1Images.eveningLights,
+    title: 'Night Glow & Sparkling Aisle Decor',
+    category: 'Noor-E-Ramzan 1.0',
+    aspectRatio: 'square',
+    caption: 'Luminous festive archways welcoming patrons into the night bazaar.',
+    eventId: 'noor-e-ramzan-1',
+  },
+
+  // Noor-E-Ramzan 2.0 (Teasers & Preparations)
+  {
+    id: 'gal-7',
+    url: noorERamzan2Images.hero,
+    title: 'Grand Noor-E-Ramzan 2.0 Visual Identity',
+    category: 'Noor-E-Ramzan 2.0',
+    aspectRatio: 'wide',
+    caption: 'The upcoming flagship edition at YMCA Royapettah with expanded layout.',
+    eventId: 'noor-e-ramzan-2',
+  },
+  {
+    id: 'gal-8',
+    url: noorERamzan2Images.venue,
+    title: 'YMCA Royapettah Open Grounds',
+    category: 'Noor-E-Ramzan 2.0',
+    aspectRatio: 'tall',
+    caption: 'Central Chennai venue offering generous parking and accessible entry.',
+    eventId: 'noor-e-ramzan-2',
+  },
+  {
+    id: 'gal-9',
+    url: noorERamzan2Images.stallExhibitionSample,
+    title: 'Exhibition Stall Structure Concept',
+    category: 'Noor-E-Ramzan 2.0',
+    aspectRatio: 'square',
+    caption: '8x6 Feet modern exhibition booths with high visibility aisles.',
+    eventId: 'noor-e-ramzan-2',
+  },
+  {
+    id: 'gal-10',
+    url: noorERamzan2Images.stallFoodSample,
+    title: 'Gourmet Food Stall Planning',
+    category: 'Noor-E-Ramzan 2.0',
+    aspectRatio: 'square',
+    caption: 'Dedicated 6x8 Feet and 6x4 Feet food preparation and service counters.',
+    eventId: 'noor-e-ramzan-2',
+  },
+
+  // Future Sama Events
+  {
+    id: 'gal-11',
+    url: futureEventImages.chennaiFoodFiesta,
+    title: 'Chennai Food Fiesta Concept',
+    category: 'Future Events',
+    aspectRatio: 'wide',
+    caption: 'Upcoming culinary showcase bringing regional food traditions together.',
+  },
+  {
+    id: 'gal-12',
+    url: futureEventImages.festiveSouk,
+    title: 'Sama Lifestyle & Design Souk Concept',
+    category: 'Future Events',
+    aspectRatio: 'tall',
+    caption: 'Curated artisanal marketplace for indie designers and boutique creators.',
+  },
+];

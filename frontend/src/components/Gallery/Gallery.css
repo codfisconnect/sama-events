@@ -1,0 +1,211 @@
+.sama-gallery-comp {
+  width: 100%;
+}
+
+.sama-gallery-comp__filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.75rem;
+  flex-wrap: wrap;
+}
+
+.sama-gallery-comp__filter-btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border-light);
+  background: var(--color-white);
+  color: var(--color-text-main);
+  transition: all var(--transition-fast);
+}
+
+.sama-gallery-comp__filter-btn:hover {
+  border-color: var(--color-gold-400);
+  color: var(--color-gold-600);
+}
+
+.sama-gallery-comp__filter-btn--active {
+  background: var(--color-dark-900);
+  color: var(--color-gold-300);
+  border-color: var(--color-dark-900);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Grid */
+.sama-gallery-comp__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 280px;
+  gap: 1.5rem;
+}
+
+.sama-gallery-comp__card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--color-dark-800);
+  box-shadow: var(--shadow-sm);
+}
+
+.sama-gallery-comp__card--wide {
+  grid-column: span 2;
+}
+
+.sama-gallery-comp__card--tall {
+  grid-row: span 2;
+}
+
+.sama-gallery-comp__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.sama-gallery-comp__card:hover .sama-gallery-comp__img {
+  transform: scale(1.06);
+}
+
+.sama-gallery-comp__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 35%,
+    rgba(14, 18, 21, 0.95) 100%
+  );
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.sama-gallery-comp__card:hover .sama-gallery-comp__card-overlay {
+  opacity: 1;
+}
+
+.sama-gallery-comp__badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-gold-300);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+}
+
+.sama-gallery-comp__card-title {
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+}
+
+.sama-gallery-comp__caption {
+  font-size: 0.82rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.sama-gallery-comp__zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--color-gold-300);
+  font-weight: 600;
+}
+
+/* Lightbox */
+.sama-gallery-comp__lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.sama-gallery-comp__lightbox-box {
+  position: relative;
+  max-width: 980px;
+  width: 100%;
+  background: var(--color-dark-900);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(200, 155, 60, 0.35);
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+.sama-gallery-comp__lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: all var(--transition-fast);
+}
+
+.sama-gallery-comp__lightbox-close:hover {
+  background: var(--color-gold-500);
+  color: #0E1215;
+}
+
+.sama-gallery-comp__lightbox-img {
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  background: #000;
+}
+
+.sama-gallery-comp__lightbox-details {
+  padding: 1.5rem 2rem;
+  background: var(--color-dark-900);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sama-gallery-comp__lightbox-details h3 {
+  color: #FFFFFF;
+  margin: 0.6rem 0 0.25rem 0;
+  font-size: 1.35rem;
+}
+
+.sama-gallery-comp__lightbox-details p {
+  color: var(--color-text-light-muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 992px) {
+  .sama-gallery-comp__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .sama-gallery-comp__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 230px;
+  }
+  .sama-gallery-comp__card--wide,
+  .sama-gallery-comp__card--tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
