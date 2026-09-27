@@ -1,101 +1,60 @@
-import React, { useState } from 'react';
-import SectionHeading from '../../components/SectionHeading/SectionHeading';
+import React, { useEffect } from 'react';
+import { getUpcomingEvents, getPastEvents } from '../../data/events';
 import EventCard from '../../components/EventCard/EventCard';
-import EventGrid from '../../components/EventGrid/EventGrid';
-import Button from '../../components/Button/Button';
-import { eventsData, getUpcomingEvents, getPastEvents } from '../../data/events';
-import { Link } from 'react-router-dom';
-import { Sparkles, Calendar, CheckCircle2, MessageCircle } from 'lucide-react';
-import { openWhatsApp } from '../../utils/whatsapp';
 import './Events.css';
 
 export const Events: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'upcoming' | 'past'>('all');
-
   const upcomingEvents = getUpcomingEvents();
   const pastEvents = getPastEvents();
 
-  const displayedEvents =
-    activeTab === 'all'
-      ? eventsData
-      : activeTab === 'upcoming'
-      ? upcomingEvents
-      : pastEvents;
+  useEffect(() => {
+    document.title = 'Events & Experiences | Sama Events';
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="events-page">
-      {/* Page Header Banner */}
-      <section className="events-page__hero">
+      {/* 1. Page Hero */}
+      <section className="events-hero">
         <div className="container">
-          <div className="events-page__hero-content">
-            <span className="badge-gold">CURATED EXPERIENCES</span>
-            <h1 className="events-page__hero-title font-serif">
-              Festivals, Expos & Gatherings
-            </h1>
-            <p className="events-page__hero-subtitle">
-              From our flagship Ramzan celebration at YMCA Royapettah to upcoming gourmet food fiestas and boutique design souks across Chennai.
+          <div className="events-hero__content">
+            <span className="eyebrow-label">EXPERIENCE PORTFOLIO</span>
+            <h1 className="events-hero__title font-serif">EVENTS</h1>
+            <p className="events-hero__subtitle">
+              Explore upcoming and past experiences by Sama Events.
             </p>
-
-            {/* Filter Tabs */}
-            <div className="events-page__tabs">
-              <button
-                className={`events-page__tab-btn ${activeTab === 'all' ? 'events-page__tab-btn--active' : ''}`}
-                onClick={() => setActiveTab('all')}
-              >
-                All Events ({eventsData.length})
-              </button>
-              <button
-                className={`events-page__tab-btn ${activeTab === 'upcoming' ? 'events-page__tab-btn--active' : ''}`}
-                onClick={() => setActiveTab('upcoming')}
-              >
-                Upcoming & Flagship ({upcomingEvents.length})
-              </button>
-              <button
-                className={`events-page__tab-btn ${activeTab === 'past' ? 'events-page__tab-btn--active' : ''}`}
-                onClick={() => setActiveTab('past')}
-              >
-                Past Editions ({pastEvents.length})
-              </button>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Events Grid Section */}
-      <section className="section-light">
+      {/* 2. Upcoming Events */}
+      <section className="section-light events-section">
         <div className="container">
-          <EventGrid events={displayedEvents} columns={3} />
+          <div className="events-section__header">
+            <span className="eyebrow-label">CURRENT & ANNOUNCED</span>
+            <h2 className="events-section__title font-serif">Upcoming Events</h2>
+          </div>
+
+          <div className="events-portfolio-grid">
+            {upcomingEvents.map((evt) => (
+              <EventCard key={evt.id} event={evt} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Featured Banner Callout */}
-      <section className="section-festive events-page__callout">
+      {/* 3. Past Events */}
+      <section className="section-cream events-section">
         <div className="container">
-          <div className="events-page__callout-inner">
-            <div>
-              <span className="badge-gold">FEATURED FLAGSHIP 2027</span>
-              <h2 className="events-page__callout-title font-serif">
-                Noor-E-Ramzan 2.0 at YMCA Royapettah
-              </h2>
-              <p className="events-page__callout-desc">
-                25 February – 08 March 2027 • 12 Days of Food, Shopping & Festive Joy. Stall bookings are now open for exhibitors and food entrepreneurs.
-              </p>
-            </div>
-            <div className="events-page__callout-actions">
-              <Link to="/events/noor-e-ramzan-2">
-                <Button variant="primary" size="lg">
-                  Explore Noor-E-Ramzan 2.0
-                </Button>
-              </Link>
-              <Button
-                variant="whatsapp"
-                size="lg"
-                icon={<MessageCircle size={18} />}
-                onClick={() => openWhatsApp({ type: 'stall', eventName: 'Noor-E-Ramzan 2.0' })}
-              >
-                Book Stall on WhatsApp
-              </Button>
-            </div>
+          <div className="events-section__header">
+            <span className="eyebrow-label">PREVIOUS CHAPTERS</span>
+            <h2 className="events-section__title font-serif">Past Events</h2>
+          </div>
+
+          <div className="events-portfolio-grid">
+            {pastEvents.map((evt) => (
+              <EventCard key={evt.id} event={evt} />
+            ))}
           </div>
         </div>
       </section>

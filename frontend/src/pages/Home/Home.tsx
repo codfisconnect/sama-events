@@ -1,175 +1,126 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../../components/Hero/Hero';
-import SectionHeading from '../../components/SectionHeading/SectionHeading';
-import Countdown from '../../components/Countdown/Countdown';
-import EventInfo from '../../components/EventInfo/EventInfo';
-import EventHighlights from '../../components/EventHighlights/EventHighlights';
-import EventGrid from '../../components/EventGrid/EventGrid';
-import PreviousEvent from '../../components/PreviousEvent/PreviousEvent';
-import EventGallery from '../../components/EventGallery/EventGallery';
-import StallBooking from '../../components/StallBooking/StallBooking';
-import StallLayout from '../../components/StallLayout/StallLayout';
-import SponsorGrid from '../../components/SponsorGrid/SponsorGrid';
-import LocationSection from '../../components/LocationSection/LocationSection';
-import ContactForm from '../../components/ContactForm/ContactForm';
 import Button from '../../components/Button/Button';
+import SpecialAppearances from '../../components/SpecialAppearances/SpecialAppearances';
 import { getFeaturedEvent, getUpcomingEvents } from '../../data/events';
-import { siteData } from '../../data/siteData';
-import { galleryData } from '../../data/gallery';
-import { sponsorsData } from '../../data/sponsors';
+import { noorERamzan1Images } from '../../data/images';
+import { ArrowRight, Calendar, MapPin, Store, MessageCircle } from 'lucide-react';
 import { openWhatsApp } from '../../utils/whatsapp';
-import {
-  Sparkles,
-  ArrowRight,
-  Store,
-  MessageCircle,
-  UtensilsCrossed,
-  ShoppingBag,
-  Award,
-  Layers,
-  Compass,
-} from 'lucide-react';
 import './Home.css';
 
 export const Home: React.FC = () => {
   const featuredEvent = getFeaturedEvent();
+  // Genuine upcoming events (excluding Noor-E-Ramzan 2.0 which is the flagship featured event)
   const upcomingEvents = getUpcomingEvents().filter((e) => !e.isFeatured);
-  const homeGalleryImages = galleryData.slice(0, 6);
 
   return (
     <div className="home-page">
-      {/* 1. Hero Section */}
+      {/* 1. HERO — Minimal, Editorial & Impactful */}
       <Hero
         title="SAMA EVENTS"
-        tagline="Where Every Event Becomes an Experience"
-        subtitle="Curating Chennai’s grandest food festivals, lifestyle shopping expos, cultural celebrations, and community experiences that bring people together."
+        tagline="Creating experiences worth remembering."
       />
 
-      {/* 2. Featured Event: NOOR-E-RAMZAN 2.0 (Festive Dark / Luxury Rhythm) */}
-      <section className="section-festive home-featured">
+      {/* 2. CURRENT FLAGSHIP — NOOR-E-RAMZAN 2.0 (Editorial Split Composition) */}
+      <section className="section-dark home-flagship">
         <div className="container">
-          <div className="home-featured__grid">
-            <div className="home-featured__content">
-              <span className="badge-gold">FLAGSHIP 2027 CELEBRATION</span>
-              <h2 className="home-featured__title font-serif">
-                {featuredEvent.title}
-              </h2>
-              <span className="home-featured__tagline">
-                {featuredEvent.tagline}
-              </span>
-              <p className="home-featured__description">
-                {featuredEvent.description}
-              </p>
-
-              <div className="home-featured__facts">
-                <div className="home-featured__fact-item">
-                  <span className="home-featured__fact-label">Dates</span>
-                  <strong>{featuredEvent.formattedDate}</strong>
-                </div>
-                <div className="home-featured__fact-item">
-                  <span className="home-featured__fact-label">Venue</span>
-                  <strong>{featuredEvent.venue}, {featuredEvent.city}</strong>
-                </div>
-                <div className="home-featured__fact-item">
-                  <span className="home-featured__fact-label">Duration</span>
-                  <strong>{featuredEvent.duration}</strong>
-                </div>
-              </div>
-
-              <div className="home-featured__actions">
-                <Link to={`/events/${featuredEvent.slug}`}>
-                  <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
-                    Explore Noor-E-Ramzan 2.0
-                  </Button>
-                </Link>
-                <Link to={`/events/${featuredEvent.slug}#stall-booking`}>
-                  <Button variant="outline" size="lg" icon={<Store size={18} />}>
-                    Book a Stall
-                  </Button>
-                </Link>
-                <Button
-                  variant="whatsapp"
-                  size="lg"
-                  icon={<MessageCircle size={18} />}
-                  onClick={() => openWhatsApp({ type: 'stall', eventName: featuredEvent.title })}
-                >
-                  WhatsApp Enquiry
-                </Button>
-              </div>
-            </div>
-
-            {/* Right Card with Countdown & Visual */}
-            <div className="home-featured__visual-box">
-              <div className="home-featured__img-wrap">
+          <div className="home-flagship__grid">
+            {/* Visual Campaign Image */}
+            <div className="home-flagship__media">
+              <div className="home-flagship__img-frame">
                 <img
                   src={featuredEvent.heroImage}
                   alt={featuredEvent.title}
-                  className="home-featured__img"
+                  className="home-flagship__img"
+                  loading="eager"
                 />
-                <div className="home-featured__img-overlay" />
-                <div className="home-featured__countdown-wrap">
-                  <Countdown
-                    targetDate={featuredEvent.startDate}
-                    eventTitle={featuredEvent.title}
-                    theme="glass"
-                  />
+                <div className="home-flagship__badge-tag">
+                  FLAGSHIP 2027
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Quick Event Info Block */}
-          <div className="home-featured__info-bar">
-            <EventInfo event={featuredEvent} theme="dark" />
-          </div>
-        </div>
-      </section>
+            {/* Campaign Narrative */}
+            <div className="home-flagship__content">
+              <span className="eyebrow-label">CURRENT FLAGSHIP EVENT</span>
+              
+              <h2 className="home-flagship__title font-serif">
+                {featuredEvent.title}
+              </h2>
 
-      {/* 3. Upcoming Events (Light Rhythm) */}
-      <section className="section-light">
-        <div className="container">
-          <SectionHeading
-            badge="EXPANDING HORIZONS"
-            title="Upcoming Festivals & Exhibitions"
-            subtitle="Discover our growing roster of curated lifestyle expos, culinary fiestas, and community showcases in Chennai."
-            align="center"
-            theme="light"
-          />
+              <div className="home-flagship__theme">
+                {featuredEvent.theme}
+              </div>
 
-          <EventGrid events={upcomingEvents} columns={2} />
-
-          <div className="home__more-events-cta">
-            <Link to="/events">
-              <Button variant="outline" size="md" icon={<Compass size={18} />}>
-                View All Scheduled Events
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. What Sama Events Creates (Warm Cream Rhythm) */}
-      <section className="section-cream">
-        <div className="container">
-          <SectionHeading
-            badge="OUR EVENT PORTFOLIO"
-            title="What Sama Events Creates"
-            subtitle="We design, curate, and promote distinctive community-scale experiences across hospitality, retail, and culture."
-            align="center"
-            theme="light"
-          />
-
-          <div className="home-categories__grid">
-            {siteData.eventCompanyHighlights.map((cat, idx) => (
-              <div key={idx} className="home-categories__card">
-                <div className="home-categories__img-box">
-                  <img src={cat.image} alt={cat.title} loading="lazy" />
-                  <div className="home-categories__overlay" />
+              <div className="home-flagship__meta-list">
+                <div className="home-flagship__meta-item">
+                  <Calendar size={18} className="home-flagship__meta-icon" />
+                  <div>
+                    <span className="home-flagship__meta-label">Dates</span>
+                    <strong className="home-flagship__meta-val">{featuredEvent.formattedDate}</strong>
+                  </div>
                 </div>
-                <div className="home-categories__details">
-                  <h4 className="home-categories__title font-serif">{cat.title}</h4>
-                  <p className="home-categories__desc">{cat.description}</p>
+
+                <div className="home-flagship__meta-item">
+                  <MapPin size={18} className="home-flagship__meta-icon" />
+                  <div>
+                    <span className="home-flagship__meta-label">Venue</span>
+                    <strong className="home-flagship__meta-val">{featuredEvent.venue}, {featuredEvent.city}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <p className="home-flagship__tagline-text">
+                One destination. Endless memories.
+              </p>
+
+              <div className="home-flagship__actions">
+                <Link to={`/events/${featuredEvent.slug}`}>
+                  <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                    EXPLORE EVENT
+                  </Button>
+                </Link>
+
+                <Link to={`/events/${featuredEvent.slug}#stalls`}>
+                  <Button variant="outline" size="lg" icon={<Store size={18} />}>
+                    STALL ENQUIRY
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. UPCOMING EVENTS — Clean Editorial Visual Grid */}
+      <section className="section-light home-upcoming">
+        <div className="container">
+          <div className="home-section-header">
+            <span className="eyebrow-label">EXPANDING EXPERIENCES</span>
+            <h2 className="home-section-title font-serif">Upcoming Events</h2>
+          </div>
+
+          <div className="home-upcoming__grid">
+            {upcomingEvents.map((evt) => (
+              <div key={evt.id} className="home-upcoming__card">
+                <div className="home-upcoming__img-wrap">
+                  <img
+                    src={evt.heroImage || evt.cardImage}
+                    alt={evt.title}
+                    className="home-upcoming__img"
+                    loading="lazy"
+                  />
+                  <div className="home-upcoming__img-overlay" />
+                  <span className="home-upcoming__category-pill">{evt.category}</span>
+                </div>
+                <div className="home-upcoming__body">
+                  <div className="home-upcoming__date-tag">{evt.formattedDate}</div>
+                  <h3 className="home-upcoming__card-title font-serif">{evt.title}</h3>
+                  <Link to={`/events/${evt.slug}`} className="home-upcoming__explore-link">
+                    <span>EXPLORE</span>
+                    <ArrowRight size={16} />
+                  </Link>
                 </div>
               </div>
             ))}
@@ -177,149 +128,94 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Noor-E-Ramzan 1.0 → 2.0 Story & Credibility (Dark Rhythm) */}
-      <PreviousEvent />
-
-      {/* 6. Featured Event Highlights (Light Rhythm) */}
-      <section className="section-light">
+      {/* 4. FROM 1.0 TO 2.0 — Authentic Visual Storytelling */}
+      <section className="section-festive home-story">
         <div className="container">
-          <SectionHeading
-            badge="OFFICIAL FESTIVAL SPECIFICATIONS"
-            title="Noor-E-Ramzan 2.0 Highlights"
-            subtitle="Explore the carefully engineered floor amenities, visitor corridors, dining spaces, and entertainment zones."
-            align="center"
-            theme="light"
-          />
+          <div className="home-story__grid">
+            <div className="home-story__narrative">
+              <span className="eyebrow-label">THE JOURNEY</span>
+              <h2 className="home-story__title font-serif">From 1.0 to 2.0</h2>
 
-          <EventHighlights theme="light" />
-        </div>
-      </section>
+              <div className="home-story__status-pill">
+                <span className="home-story__year">2026</span>
+                <span className="home-story__sep">•</span>
+                <span className="home-story__edition">NOOR-E-RAMZAN 1.0</span>
+                <span className="home-story__sep">•</span>
+                <span className="home-story__tag">SUCCESSFULLY COMPLETED</span>
+              </div>
 
-      {/* 7. Stall Booking & YMCA Layout (Cream Rhythm) */}
-      <section className="section-cream">
-        <div className="container">
-          <SectionHeading
-            badge="EXHIBITOR OPPORTUNITIES"
-            title="Book Your Stall at Noor-E-Ramzan 2.0"
-            subtitle="Choose from official 8x6 ft retail exhibition stalls and dedicated 6x8 ft / 6x4 ft gourmet food court stalls."
-            align="center"
-            theme="light"
-          />
-
-          <StallBooking eventName={featuredEvent.title} theme="light" />
-
-          <div className="home__layout-spacing">
-            <SectionHeading
-              badge="VENUE ARCHITECTURE"
-              title="YMCA Royapettah Venue & Stall Layout"
-              subtitle="Floor plan layout demonstrating entrance flows, parking zones, dining court, and stall allocations."
-              align="center"
-              theme="light"
-            />
-            <StallLayout eventName={featuredEvent.title} theme="light" />
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Event Gallery (Dark Rhythm) */}
-      <section className="section-dark">
-        <div className="container">
-          <SectionHeading
-            badge="CAPTURED MOMENTS"
-            title="Glimpses of Celebrations"
-            subtitle="Experience the festive atmosphere, crowds, artisanal stalls, and joyful visitors through our gallery."
-            align="center"
-            theme="dark"
-          />
-
-          <EventGallery images={homeGalleryImages} theme="dark" />
-
-          <div className="home__gallery-cta">
-            <Link to="/gallery">
-              <Button variant="outline" size="md" icon={<ArrowRight size={16} />} iconPosition="right">
-                Explore Full Festival Gallery
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Sponsors / Partners (Light Rhythm) */}
-      <section className="section-light">
-        <div className="container">
-          <SectionHeading
-            badge="COLLABORATION & SUPPORT"
-            title="Partners & Associations"
-            subtitle="Collaborating with visionary brands and community stakeholders to create unforgettable gatherings."
-            align="center"
-            theme="light"
-          />
-
-          <SponsorGrid sponsors={sponsorsData} theme="light" />
-        </div>
-      </section>
-
-      {/* 10. Venue Location (Cream Rhythm) */}
-      <section className="section-cream">
-        <div className="container">
-          <SectionHeading
-            badge="HOW TO REACH"
-            title="Festival Venue & Location"
-            subtitle="Conveniently situated in the heart of Chennai at YMCA Grounds, Royapettah."
-            align="center"
-            theme="light"
-          />
-
-          <LocationSection
-            venueName="YMCA Royapettah"
-            address="No. 149/70, Dr. Besant Road, Royapettah"
-            city="Chennai"
-            pincode="600014"
-            landmark="Central Royapettah / Opposite YMCA Campus"
-            directionsUrl="https://maps.google.com/?q=YMCA+Royapettah+Chennai"
-            theme="light"
-          />
-        </div>
-      </section>
-
-      {/* 11. Contact / WhatsApp CTA (Dark Rhythm) */}
-      <section className="section-dark" id="contact-section">
-        <div className="container">
-          <div className="home-contact__grid">
-            <div className="home-contact__intro">
-              <span className="badge-gold">CONNECT WITH SAMA EVENTS</span>
-              <h2 className="home-contact__title font-serif">
-                Plan Your Participation or Stalls Today
-              </h2>
-              <p className="home-contact__desc">
-                Have questions regarding stall booking fees, brand sponsorship packages, or event visitor schedules? Drop us an enquiry and our team will get in touch with you immediately.
+              <p className="home-story__statement">
+                A celebration that brought people together — now returning as Noor-E-Ramzan 2.0.
               </p>
 
-              <div className="home-contact__quick-wa">
-                <h4>Prefer instant answers?</h4>
-                <p>Chat directly with our organizing committee via WhatsApp:</p>
-                <div className="home-contact__wa-buttons">
-                  <Button
-                    variant="whatsapp"
-                    size="md"
-                    icon={<MessageCircle size={18} />}
-                    onClick={() => openWhatsApp({ type: 'stall', eventName: featuredEvent.title })}
-                  >
-                    Stall Booking on WhatsApp
+              <div className="home-story__cta-wrap">
+                <Link to="/events/noor-e-ramzan-1">
+                  <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                    VIEW 1.0 MOMENTS
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="md"
-                    onClick={() => openWhatsApp({ type: 'general' })}
-                  >
-                    General Enquiry
-                  </Button>
-                </div>
+                </Link>
               </div>
             </div>
 
-            <div className="home-contact__form-col">
-              <ContactForm initialEvent={featuredEvent.title} theme="dark" />
+            {/* Visual Collage */}
+            <div className="home-story__visual-box">
+              <div className="home-story__lead-img-wrap">
+                <img
+                  src={noorERamzan1Images.hero}
+                  alt="Noor-E-Ramzan 1.0 Celebration"
+                  className="home-story__lead-img"
+                  loading="lazy"
+                />
+              </div>
+              <div className="home-story__sub-imgs">
+                <div className="home-story__sub-img-frame">
+                  <img
+                    src={noorERamzan1Images.foodCourt}
+                    alt="Food court moments"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="home-story__sub-img-frame">
+                  <img
+                    src={noorERamzan1Images.crowdAtmosphere}
+                    alt="Community gathering"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SPECIAL APPEARANCES — Authentic Celebrity & Distinguished Guest Moments */}
+      <SpecialAppearances />
+
+      {/* 6. FINAL CTA — Clean, Confident & Minimal */}
+      <section className="section-dark home-final-cta">
+        <div className="container">
+          <div className="home-final-cta__box">
+            <span className="eyebrow-label">COLLABORATE WITH US</span>
+            <h2 className="home-final-cta__heading font-serif">
+              Planning an event?
+            </h2>
+            <p className="home-final-cta__sub">
+              Let's create something memorable.
+            </p>
+            <div className="home-final-cta__actions">
+              <Link to="/contact">
+                <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                  TALK TO SAMA EVENTS
+                </Button>
+              </Link>
+              <Button
+                variant="whatsapp"
+                size="lg"
+                icon={<MessageCircle size={18} />}
+                onClick={() => openWhatsApp({ type: 'general' })}
+              >
+                WHATSAPP US
+              </Button>
             </div>
           </div>
         </div>

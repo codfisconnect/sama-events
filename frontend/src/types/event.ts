@@ -29,6 +29,8 @@ export interface EventData {
   title: string;
   edition?: string;
   tagline: string;
+  theme?: string;
+  supportingPhrase?: string;
   category: string;
   description: string;
   longDescription?: string[];

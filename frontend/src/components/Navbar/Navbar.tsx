@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { navigationLinks } from '../../data/navigation';
 import { siteData } from '../../data/siteData';
+import { brandImages } from '../../data/images';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
 import Button from '../Button/Button';
-import { Menu, X, Sparkles, MessageCircle } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
+import { openWhatsApp } from '../../utils/whatsapp';
 import './Navbar.css';
 
 export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isScrolled = useScrollPosition(40);
-  const navigate = useNavigate();
-
-  const handleEnquireClick = () => {
-    setIsMobileMenuOpen(false);
-    navigate('/contact');
-  };
+  const isScrolled = useScrollPosition(30);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -24,11 +20,16 @@ export const Navbar: React.FC = () => {
   return (
     <header className={`sama-navbar ${isScrolled ? 'sama-navbar--scrolled' : ''}`}>
       <div className="container sama-navbar__inner">
-        {/* Brand Logo */}
+        {/* Brand Logo & Name */}
         <Link to="/" className="sama-navbar__brand" onClick={closeMobileMenu}>
-          <div className="sama-navbar__logo-crest">
-            <Sparkles size={20} className="sama-navbar__crest-icon" />
-          </div>
+          <img
+            src={brandImages.logo}
+            alt={siteData.name}
+            className="sama-navbar__brand-logo-img"
+            onError={(e) => {
+              (e.currentTarget as HTMLElement).style.display = 'none';
+            }}
+          />
           <div className="sama-navbar__brand-text">
             <span className="sama-navbar__brand-name font-serif">{siteData.name.toUpperCase()}</span>
             <span className="sama-navbar__brand-tagline">EXPERIENCES & FESTIVALS</span>
@@ -56,14 +57,15 @@ export const Navbar: React.FC = () => {
 
         {/* Header Right Action CTA */}
         <div className="sama-navbar__actions">
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={handleEnquireClick}
-            className="sama-navbar__cta-btn"
-          >
-            Book / Enquire
-          </Button>
+          <Link to="/events/noor-e-ramzan-2">
+            <Button
+              variant="primary"
+              size="sm"
+              className="sama-navbar__cta-btn"
+            >
+              NOOR-E-RAMZAN 2.0
+            </Button>
+          </Link>
 
           {/* Mobile Hamburger Toggle Button */}
           <button
@@ -102,14 +104,15 @@ export const Navbar: React.FC = () => {
           </ul>
 
           <div className="sama-navbar__mobile-actions">
-            <Button
-              variant="primary"
-              size="md"
-              fullWidth
-              onClick={handleEnquireClick}
-            >
-              Book / Enquire
-            </Button>
+            <Link to="/events/noor-e-ramzan-2" onClick={closeMobileMenu}>
+              <Button
+                variant="primary"
+                size="md"
+                fullWidth
+              >
+                NOOR-E-RAMZAN 2.0
+              </Button>
+            </Link>
             <Button
               variant="whatsapp"
               size="md"
@@ -117,7 +120,7 @@ export const Navbar: React.FC = () => {
               icon={<MessageCircle size={18} />}
               onClick={() => {
                 closeMobileMenu();
-                navigate('/contact#whatsapp');
+                openWhatsApp({ type: 'general' });
               }}
             >
               WhatsApp Support
@@ -126,7 +129,7 @@ export const Navbar: React.FC = () => {
 
           <div className="sama-navbar__mobile-footer">
             <p>{siteData.tagline}</p>
-            <span>Chennai, Tamil Nadu</span>
+            <span>{siteData.contact.city}, {siteData.contact.state}</span>
           </div>
         </div>
       </div>

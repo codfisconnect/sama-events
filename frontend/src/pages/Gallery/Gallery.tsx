@@ -1,36 +1,30 @@
 import React, { useEffect } from 'react';
-import SectionHeading from '../../components/SectionHeading/SectionHeading';
 import GalleryComponent from '../../components/Gallery/Gallery';
 import { galleryData } from '../../data/gallery';
-import { brandImages } from '../../data/images';
 import './Gallery.css';
 
 export const Gallery: React.FC = () => {
   useEffect(() => {
-    document.title = 'Photo Gallery | Sama Events';
+    document.title = 'Visual Moments | Sama Events Gallery';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="gallery-page">
-      {/* Hero */}
-      <section
-        className="gallery-hero"
-        style={{ backgroundImage: `url(${brandImages.galleryHeroBg})` }}
-      >
-        <div className="gallery-hero__overlay" />
-        <div className="container gallery-hero__container">
-          <span className="badge-gold">VISUAL ARCHIVE</span>
-          <h1 className="gallery-hero__title font-serif">
-            Festival Memories & Previews
-          </h1>
-          <p className="gallery-hero__subtitle">
-            Explore authentic moments from our previous Noor-E-Ramzan 1.0 edition, sneak peeks of Noor-E-Ramzan 2.0, and future festival concepts curated by Sama Events.
-          </p>
+      {/* 1. Page Header */}
+      <section className="gallery-page__hero">
+        <div className="container">
+          <div className="gallery-page__hero-content">
+            <span className="eyebrow-label">VISUAL ARCHIVE</span>
+            <h1 className="gallery-page__hero-title font-serif">GALLERY</h1>
+            <p className="gallery-page__hero-subtitle">
+              Moments of celebration, authentic flavors, and community experiences.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Main Gallery Container */}
+      {/* 2. Visual Grid */}
       <section className="section-light gallery-main-section">
         <div className="container">
           <GalleryComponent images={galleryData} />

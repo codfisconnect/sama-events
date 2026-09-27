@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GalleryImageItem } from '../../types/gallery';
-import { Eye, X, Filter } from 'lucide-react';
+import { Eye, X } from 'lucide-react';
 import './Gallery.css';
 
 export interface GalleryProps {
@@ -15,11 +15,13 @@ export const Gallery: React.FC<GalleryProps> = ({
   const [activeFilter, setActiveFilter] = useState<string>(defaultCategory);
   const [selectedImage, setSelectedImage] = useState<GalleryImageItem | null>(null);
 
+  // Exact categories specified in Section 18
   const categories = [
     'All',
-    'Noor-E-Ramzan 1.0',
-    'Noor-E-Ramzan 2.0',
-    'Future Events',
+    'Noor-E-Ramzan',
+    'Events',
+    'Food',
+    'Festivals',
   ];
 
   const filteredImages =
@@ -39,7 +41,7 @@ export const Gallery: React.FC<GalleryProps> = ({
             }`}
             onClick={() => setActiveFilter(cat)}
           >
-            {cat === 'All' ? 'All Editions' : cat}
+            {cat.toUpperCase()}
           </button>
         ))}
       </div>
@@ -60,8 +62,7 @@ export const Gallery: React.FC<GalleryProps> = ({
             />
             <div className="sama-gallery-comp__card-overlay">
               <span className="sama-gallery-comp__badge">{img.category}</span>
-              <h4 className="sama-gallery-comp__card-title">{img.title}</h4>
-              {img.caption && <p className="sama-gallery-comp__caption">{img.caption}</p>}
+              <h4 className="sama-gallery-comp__card-title font-serif">{img.title}</h4>
               <div className="sama-gallery-comp__zoom">
                 <Eye size={18} />
                 <span>Enlarge</span>
@@ -97,7 +98,7 @@ export const Gallery: React.FC<GalleryProps> = ({
             />
             <div className="sama-gallery-comp__lightbox-details">
               <span className="badge-gold">{selectedImage.category}</span>
-              <h3>{selectedImage.title}</h3>
+              <h3 className="font-serif">{selectedImage.title}</h3>
               {selectedImage.caption && <p>{selectedImage.caption}</p>}
             </div>
           </div>

@@ -1,15 +1,15 @@
 export type EnquiryType =
+  | 'General Enquiry'
   | 'Event Enquiry'
-  | 'Stall Booking'
-  | 'Sponsorship'
+  | 'Stall Enquiry'
   | 'Partnership'
-  | 'General Enquiry';
+  | 'Stall Booking';
 
 export interface EnquiryFormData {
   name: string;
   phone: string;
   email?: string;
-  event: string;
+  event?: string;
   enquiryType: EnquiryType;
   message: string;
 }
@@ -22,7 +22,7 @@ export interface EnquirySubmissionResponse {
     name: string;
     phone: string;
     email?: string | null;
-    event: string;
+    event?: string;
     enquiryType: string;
     message: string;
     createdAt: string;

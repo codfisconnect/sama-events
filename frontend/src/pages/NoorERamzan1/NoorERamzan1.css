@@ -1,0 +1,211 @@
+/* ============================================================
+   SAMA EVENTS - NOOR-E-RAMZAN 1.0 STORY RETROSPECTIVE STYLES
+   ============================================================ */
+
+.noor1-story-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Hero */
+.noor1-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+  padding: 130px 0 80px 0;
+}
+
+.noor1-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 12, 10, 0.7) 0%,
+    rgba(6, 12, 10, 0.85) 60%,
+    rgba(6, 12, 10, 0.98) 100%
+  );
+  z-index: 1;
+}
+
+.noor1-hero__container {
+  position: relative;
+  z-index: 2;
+}
+
+.noor1-hero__content {
+  max-width: 820px;
+}
+
+.noor1-hero__title {
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--color-white);
+  margin-bottom: 1.25rem;
+}
+
+.noor1-hero__status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--color-gold-300);
+  margin-bottom: 1.75rem;
+}
+
+.noor1-hero__sep {
+  opacity: 0.4;
+}
+
+.noor1-hero__intro {
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  color: var(--color-cream-100);
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+/* 2. Visual Chronicle Chapters */
+.noor1-chapters {
+  padding: 6.5rem 0;
+}
+
+.noor1-chapters__timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.noor1-chapter-card {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+.noor1-chapter-card--lead {
+  grid-template-columns: 1fr;
+}
+
+.noor1-chapter-card--split {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.noor1-chapter-card:nth-child(even).noor1-chapter-card--split {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.noor1-chapter-card:nth-child(even).noor1-chapter-card--split .noor1-chapter-card__img-frame {
+  order: 2;
+}
+
+.noor1-chapter-card:nth-child(even).noor1-chapter-card--split .noor1-chapter-card__info {
+  order: 1;
+}
+
+.noor1-chapter-card__img-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  aspect-ratio: 16 / 10;
+}
+
+.noor1-chapter-card--lead .noor1-chapter-card__img-frame {
+  aspect-ratio: 21 / 9;
+}
+
+.noor1-chapter-card__img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.noor1-chapter-card:hover .noor1-chapter-card__img-frame img {
+  transform: scale(1.04);
+}
+
+.noor1-chapter-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.noor1-chapter-card__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-gold-400);
+  margin-bottom: 0.6rem;
+}
+
+.noor1-chapter-card__title {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+.noor1-chapter-card__caption {
+  font-size: 1.05rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.6;
+}
+
+/* 3. Ready for 2.0 Bridge */
+.noor1-bridge {
+  padding: 6.5rem 0;
+  background-color: var(--color-green-950);
+}
+
+.noor1-bridge__box {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noor1-bridge__heading {
+  font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+.noor1-bridge__sub {
+  font-size: 1.15rem;
+  color: var(--color-text-light-muted);
+  margin-bottom: 2.25rem;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .noor1-chapter-card--split,
+  .noor1-chapter-card:nth-child(even).noor1-chapter-card--split {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .noor1-chapter-card:nth-child(even).noor1-chapter-card--split .noor1-chapter-card__img-frame {
+    order: 1;
+  }
+  .noor1-chapter-card:nth-child(even).noor1-chapter-card--split .noor1-chapter-card__info {
+    order: 2;
+  }
+  .noor1-chapter-card--lead .noor1-chapter-card__img-frame {
+    aspect-ratio: 16 / 10;
+  }
+}

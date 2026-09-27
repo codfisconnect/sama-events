@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getEventBySlug, getFeaturedEvent } from '../../data/events';
-import { guestsData } from '../../data/guests';
-import SectionHeading from '../../components/SectionHeading/SectionHeading';
-import Countdown from '../../components/Countdown/Countdown';
-import EventInfo from '../../components/EventInfo/EventInfo';
-import EventHighlights from '../../components/EventHighlights/EventHighlights';
 import StallBooking from '../../components/StallBooking/StallBooking';
 import StallLayout from '../../components/StallLayout/StallLayout';
-import GuestCard from '../../components/GuestCard/GuestCard';
-import LocationSection from '../../components/LocationSection/LocationSection';
-import ContactForm from '../../components/ContactForm/ContactForm';
 import Button from '../../components/Button/Button';
 import { openWhatsApp } from '../../utils/whatsapp';
-import { Sparkles, Calendar, MapPin, Store, MessageCircle, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import {
+  Calendar,
+  MapPin,
+  Sparkles,
+  Store,
+  MessageCircle,
+  ExternalLink,
+  Utensils,
+  ShoppingBag,
+  Users,
+  Compass,
+  ArrowRight,
+  Smile,
+} from 'lucide-react';
 import './EventDetails.css';
 
 export const EventDetails: React.FC = () => {
@@ -21,59 +26,91 @@ export const EventDetails: React.FC = () => {
   const slug = eventSlug || 'noor-e-ramzan-2';
   const event = getEventBySlug(slug) || getFeaturedEvent();
 
-  // Dynamic Page Title
   useEffect(() => {
     document.title = `${event.title} | Sama Events`;
     window.scrollTo(0, 0);
   }, [event]);
 
-  const eventGuests = guestsData.filter((g) => !g.eventId || g.eventId === event.id);
+  // What to Expect concise visual tiles
+  const expectations = [
+    {
+      title: 'Food Court & Delicacies',
+      label: 'FOOD',
+      desc: 'Authentic Ramadan specialties, signature kebabs, haleem, biryani, and live dessert counters.',
+      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'Boutique Shopping',
+      label: 'SHOPPING',
+      desc: 'Curated apparel, festive abayas, kurtis, fine jewellery, and artisanal accessories.',
+      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'Exhibition Pavilions',
+      label: 'EXHIBITION',
+      desc: 'Spacious retail stalls featuring established brands and homegrown independent designers.',
+      image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'Family Gathering Area',
+      label: 'FAMILY',
+      desc: 'Safe, welcoming environment complete with covered seating arenas and family dining halls.',
+      image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'Kids Play Zone',
+      label: 'KIDS',
+      desc: 'Dedicated amusement area and engaging activities for children and young families.',
+      image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'Festive Atmosphere',
+      label: 'CELEBRATION',
+      desc: 'Illuminated archways, evening ambience, and community warmth celebrating together.',
+      image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
+    },
+  ];
+
+  // Visual experience photography
+  const experienceImages = [
+    {
+      url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=900&q=80',
+      caption: 'Evening Illumination',
+    },
+    {
+      url: '/images/noor-e-ramzan-1/food-hero.jpeg',
+      caption: 'Culinary Experiences',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80',
+      caption: 'Community Celebrations',
+    },
+  ];
 
   return (
-    <div className="event-details-page">
-      {/* Event Details Hero */}
+    <div className="event-campaign-page">
+      {/* SECTION 1: CINEMATIC HERO */}
       <section
-        className="event-details-hero"
+        className="campaign-hero"
         style={{ backgroundImage: `url(${event.heroImage})` }}
       >
-        <div className="event-details-hero__overlay" />
-        <div className="container event-details-hero__container">
-          <Link to="/events" className="event-details-hero__back">
-            <ArrowLeft size={16} />
-            <span>Back to All Events</span>
-          </Link>
-
-          <div className="event-details-hero__content">
-            <div className="event-details-hero__badge-row">
-              <span className="badge-gold">
-                {event.status === 'upcoming'
-                  ? 'OFFICIAL 2027 FESTIVAL'
-                  : event.status === 'completed'
-                  ? 'COMPLETED EDITION'
-                  : 'ANNOUNCED EVENT'}
-              </span>
-              <span className="event-details-hero__category">{event.category}</span>
+        <div className="campaign-hero__overlay" />
+        <div className="container campaign-hero__container">
+          <div className="campaign-hero__content">
+            <span className="eyebrow-label">OFFICIAL FESTIVAL MICROSITE</span>
+            <h1 className="campaign-hero__title font-serif">{event.title}</h1>
+            
+            <div className="campaign-hero__meta-strip">
+              <span className="campaign-hero__date-pill">{event.formattedDate}</span>
+              <span className="campaign-hero__meta-divider">•</span>
+              <span className="campaign-hero__venue-pill">{event.venue}, {event.city}</span>
             </div>
 
-            <h1 className="event-details-hero__title font-serif">{event.title}</h1>
-            <p className="event-details-hero__tagline">{event.tagline}</p>
-
-            <div className="event-details-hero__quick-meta">
-              <div className="event-details-hero__meta-pill">
-                <Calendar size={16} />
-                <span>{event.formattedDate}</span>
-              </div>
-              <div className="event-details-hero__meta-pill">
-                <MapPin size={16} />
-                <span>{event.venue}, {event.city}</span>
-              </div>
-            </div>
-
-            <div className="event-details-hero__actions">
-              {event.status === 'upcoming' && event.stallInfo && (
-                <a href="#stall-booking">
+            <div className="campaign-hero__actions">
+              {event.stallInfo && (
+                <a href="#stalls">
                   <Button variant="primary" size="lg" icon={<Store size={18} />}>
-                    Book a Stall
+                    STALL ENQUIRY
                   </Button>
                 </a>
               )}
@@ -88,191 +125,182 @@ export const EventDetails: React.FC = () => {
                   })
                 }
               >
-                Enquire on WhatsApp
+                WHATSAPP
               </Button>
             </div>
           </div>
-
-          {/* Countdown widget for upcoming events */}
-          {event.status === 'upcoming' && (
-            <div className="event-details-hero__countdown">
-              <Countdown targetDate={event.startDate} eventTitle={event.title} />
-            </div>
-          )}
         </div>
       </section>
 
-      {/* Structured Key Facts */}
-      <section className="section-light event-details__info-section">
+      {/* SECTION 2: QUICK FACTS (VISUAL) */}
+      <section className="section-cream campaign-facts">
         <div className="container">
-          <EventInfo event={event} theme="light" />
-        </div>
-      </section>
-
-      {/* Description & Overview */}
-      <section className="section-cream">
-        <div className="container">
-          <div className="event-details__overview-grid">
-            <div className="event-details__overview-text">
-              <span className="badge-gold">ABOUT THE EXPERIENCE</span>
-              <h2 className="event-details__section-title font-serif">
-                Festival Concept & Atmosphere
-              </h2>
-              {event.longDescription ? (
-                event.longDescription.map((p, idx) => (
-                  <p key={idx} className="event-details__paragraph">
-                    {p}
-                  </p>
-                ))
-              ) : (
-                <p className="event-details__paragraph">{event.description}</p>
-              )}
-
-              <div className="event-details__highlights-list">
-                <h4>Festival Key Features:</h4>
-                <div className="event-details__highlights-chips">
-                  {event.highlights.map((h, i) => (
-                    <span key={i} className="event-details__chip">
-                      <CheckCircle2 size={16} className="event-details__chip-icon" />
-                      <span>{h}</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
+          <div className="campaign-facts__grid">
+            <div className="campaign-facts__card">
+              <span className="campaign-facts__label">DATE</span>
+              <strong className="campaign-facts__value font-serif">{event.formattedDate}</strong>
             </div>
 
-            <div className="event-details__overview-media">
-              <div className="event-details__card-image-box">
-                <img
-                  src={event.cardImage || event.heroImage}
-                  alt={event.title}
-                  className="event-details__card-img"
-                />
-                <div className="event-details__card-caption">
-                  <span className="badge-gold">{event.venue}</span>
-                  <p>12 Days Festive Atmosphere in Chennai</p>
-                </div>
-              </div>
+            <div className="campaign-facts__card">
+              <span className="campaign-facts__label">VENUE</span>
+              <strong className="campaign-facts__value font-serif">{event.venue}</strong>
+              <span className="campaign-facts__sub">{event.city}</span>
+            </div>
+
+            <div className="campaign-facts__card">
+              <span className="campaign-facts__label">THEME</span>
+              <strong className="campaign-facts__value font-serif">{event.theme || event.tagline}</strong>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Highlights Component (Brochure Verified) */}
-      <section className="section-dark">
+      {/* SECTION 3: WHAT TO EXPECT (CONCISE VISUAL TILES) */}
+      <section className="section-light campaign-expect">
         <div className="container">
-          <SectionHeading
-            badge="AMENITIES & ACTIVITIES"
-            title="What Awaits You at the Festival"
-            subtitle="Carefully engineered venue layout and entertainment spaces for a relaxing family outing."
-            align="center"
-            theme="dark"
-          />
-
-          <EventHighlights theme="dark" />
-        </div>
-      </section>
-
-      {/* Stall Booking Section (If Available) */}
-      {event.stallInfo && (
-        <section className="section-light" id="stall-booking">
-          <div className="container">
-            <SectionHeading
-              badge="STALL RESERVATIONS"
-              title="Official Stall Dimensions & Categories"
-              subtitle={event.stallInfo.description}
-              align="center"
-              theme="light"
-            />
-
-            <StallBooking eventName={event.title} theme="light" />
-
-            <div className="event-details__layout-wrap">
-              <SectionHeading
-                badge="FLOOR PLAN BLUEPRINT"
-                title="YMCA Royapettah Venue Floor Plan"
-                subtitle="Exhibition layout, food stalls, dining spaces, parking, and visitor flow."
-                align="center"
-                theme="light"
-              />
-              <StallLayout
-                layoutImage={event.stallInfo.layoutImageUrl}
-                eventName={event.title}
-                theme="light"
-              />
-            </div>
+          <div className="campaign-section-header">
+            <span className="eyebrow-label">EXPERIENCE HIGHLIGHTS</span>
+            <h2 className="campaign-section-title font-serif">What to Expect</h2>
           </div>
-        </section>
-      )}
 
-      {/* Dignitaries & Guests Section */}
-      <section className="section-cream">
-        <div className="container">
-          <SectionHeading
-            badge="HONOURABLE PATRONS"
-            title="Dignitaries & Special Guests"
-            subtitle="Distinguished guests and ambassadors participating in our festive ceremonies."
-            align="center"
-            theme="light"
-          />
-
-          <div className="event-details__guests-grid">
-            {eventGuests.map((guest) => (
-              <GuestCard key={guest.id} guest={guest} />
+          <div className="campaign-expect__grid">
+            {expectations.map((item, idx) => (
+              <div key={idx} className="campaign-expect-tile">
+                <div className="campaign-expect-tile__img-box">
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <div className="campaign-expect-tile__overlay" />
+                  <span className="campaign-expect-tile__badge">{item.label}</span>
+                </div>
+                <div className="campaign-expect-tile__body">
+                  <h3 className="campaign-expect-tile__title font-serif">{item.title}</h3>
+                  <p className="campaign-expect-tile__desc">{item.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Location Section */}
-      <section className="section-light">
-        <div className="container">
-          <SectionHeading
-            badge="GET DIRECTIONS"
-            title="Festival Venue & Navigation"
-            subtitle="Centrally located at YMCA Royapettah with ample parking and accessibility."
-            align="center"
-            theme="light"
-          />
+      {/* SECTION 4: STALLS (OFFICIAL DIMENSIONS, NO FAKE PRICING) */}
+      {event.stallInfo && (
+        <section className="section-cream campaign-stalls" id="stalls">
+          <div className="container">
+            <div className="campaign-section-header">
+              <span className="eyebrow-label">EXHIBITOR OPPORTUNITIES</span>
+              <h2 className="campaign-section-title font-serif">Stall Specifications</h2>
+              <p className="campaign-section-sub">
+                Official dimensions derived from YMCA Royapettah floor plan.
+              </p>
+            </div>
 
-          <LocationSection
-            venueName={event.venue}
-            address={event.address}
-            city={event.city}
-            directionsUrl={event.googleMapsUrl}
-            theme="light"
-          />
+            <StallBooking eventName={event.title} theme="light" />
+          </div>
+        </section>
+      )}
+
+      {/* SECTION 5: VENUE PLAN (LARGE VISUAL WITH ENLARGE/LIGHTBOX) */}
+      {event.stallInfo && (
+        <section className="section-light campaign-venue-plan">
+          <div className="container">
+            <div className="campaign-section-header">
+              <span className="eyebrow-label">FLOOR ARCHITECTURE</span>
+              <h2 className="campaign-section-title font-serif">Venue Plan</h2>
+              <p className="campaign-section-sub">
+                Master layout for stalls, entry points, dining arena, and parking.
+              </p>
+            </div>
+
+            <StallLayout
+              layoutImage={event.stallInfo.layoutImageUrl}
+              eventName={event.title}
+              theme="light"
+            />
+          </div>
+        </section>
+      )}
+
+      {/* SECTION 6: EVENT EXPERIENCE (PHOTOGRAPHY) */}
+      <section className="section-dark campaign-experience">
+        <div className="container">
+          <div className="campaign-section-header">
+            <span className="eyebrow-label">GENUINE ATMOSPHERE</span>
+            <h2 className="campaign-section-title font-serif">Event Experience</h2>
+          </div>
+
+          <div className="campaign-experience__grid">
+            {experienceImages.map((img, i) => (
+              <div key={i} className="campaign-experience__card">
+                <img src={img.url} alt={img.caption} loading="lazy" />
+                <div className="campaign-experience__caption">
+                  <span>{img.caption}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Enquiry Form */}
-      <section className="section-dark">
+      {/* SECTION 7: LOCATION */}
+      <section className="section-light campaign-location">
         <div className="container">
-          <div className="event-details__enquiry-layout">
-            <div className="event-details__enquiry-text">
-              <span className="badge-gold">DIRECT ENQUIRY DESK</span>
-              <h2 className="event-details__enquiry-title font-serif">
-                Reserve Your Stall or Request Event Information
-              </h2>
-              <p className="event-details__enquiry-desc">
-                Whether you wish to showcase your retail brand, set up a culinary stall in the food court, or sponsor festival activities, submit your details below or chat directly on WhatsApp.
+          <div className="campaign-location__box">
+            <div className="campaign-location__content">
+              <span className="eyebrow-label">HOW TO REACH</span>
+              <h2 className="campaign-location__title font-serif">{event.venue}, {event.city}</h2>
+              <p className="campaign-location__address">
+                {event.address}
               </p>
-              <div className="event-details__wa-action-box">
-                <h4>Need an immediate stall rate sheet?</h4>
-                <p>Chat directly with the Sama Events committee:</p>
-                <Button
-                  variant="whatsapp"
-                  size="md"
-                  icon={<MessageCircle size={18} />}
-                  onClick={() => openWhatsApp({ type: 'stall', eventName: event.title })}
+              <div className="campaign-location__cta">
+                <a
+                  href={event.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(event.venue + ' ' + event.city)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  WhatsApp Stall Desk
-                </Button>
+                  <Button variant="outline" size="md" icon={<ExternalLink size={16} />} iconPosition="right">
+                    OPEN IN GOOGLE MAPS
+                  </Button>
+                </a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="event-details__form-col">
-              <ContactForm initialEvent={event.title} theme="dark" />
+      {/* SECTION 8: FINAL PARTICIPATION CTA */}
+      <section className="section-festive campaign-final-cta">
+        <div className="container">
+          <div className="campaign-final-cta__box">
+            <span className="eyebrow-label">RESERVE YOUR SPACE</span>
+            <h2 className="campaign-final-cta__heading font-serif">
+              Interested in Participating?
+            </h2>
+            <p className="campaign-final-cta__sub">
+              Secure your exhibition stall or food court counter for Noor-E-Ramzan 2.0 today.
+            </p>
+            <div className="campaign-final-cta__actions">
+              <Button
+                variant="primary"
+                size="lg"
+                icon={<Store size={18} />}
+                onClick={() => openWhatsApp({ type: 'stall', eventName: event.title })}
+              >
+                STALL ENQUIRY
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => openWhatsApp({ type: 'event', eventName: event.title })}
+              >
+                EVENT ENQUIRY
+              </Button>
+              <Button
+                variant="whatsapp"
+                size="lg"
+                icon={<MessageCircle size={18} />}
+                onClick={() => openWhatsApp({ type: 'general' })}
+              >
+                WHATSAPP
+              </Button>
             </div>
           </div>
         </div>

@@ -2,34 +2,29 @@ import React, { useState } from 'react';
 import { EnquiryFormData, EnquiryType } from '../../types/enquiry';
 import { EnquiryService } from '../../services/enquiryService';
 import Button from '../Button/Button';
-import { Send, CheckCircle2, AlertCircle, Loader2, MessageCircle } from 'lucide-react';
-import { openWhatsApp } from '../../utils/whatsapp';
+import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import './ContactForm.css';
 
 export interface ContactFormProps {
-  initialEvent?: string;
   initialType?: EnquiryType;
   theme?: 'light' | 'dark';
 }
 
 const enquiryTypes: EnquiryType[] = [
-  'Event Enquiry',
-  'Stall Booking',
-  'Sponsorship',
-  'Partnership',
   'General Enquiry',
+  'Event Enquiry',
+  'Stall Enquiry',
+  'Partnership',
 ];
 
 export const ContactForm: React.FC<ContactFormProps> = ({
-  initialEvent = 'Noor-E-Ramzan 2.0',
-  initialType = 'Event Enquiry',
+  initialType = 'General Enquiry',
   theme = 'light',
 }) => {
   const [formData, setFormData] = useState<EnquiryFormData>({
     name: '',
     phone: '',
     email: '',
-    event: initialEvent,
     enquiryType: initialType,
     message: '',
   });
@@ -43,13 +38,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     const newErrors: Partial<Record<keyof EnquiryFormData, string>> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Full name is required';
+      newErrors.name = 'Please enter your name';
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
+      newErrors.phone = 'Please enter your phone number';
     } else if (formData.phone.trim().replace(/\D/g, '').length < 8) {
-      newErrors.phone = 'Please enter a valid phone number (at least 8 digits)';
+      newErrors.phone = 'Please enter a valid phone number';
     }
 
     if (formData.email && formData.email.trim()) {
@@ -88,19 +83,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     setIsSubmitting(true);
 
     try {
-      await EnquiryService.submitEnquiry(formData);
+      await EnquiryService.submitEnquiry({
+        ...formData,
+        event: 'General / Sama Events',
+      });
       setSubmitSuccess(true);
       setFormData({
         name: '',
         phone: '',
         email: '',
-        event: initialEvent,
         enquiryType: initialType,
         message: '',
       });
-    } catch (err: any) {
-      // Even if database endpoint is not currently spun up, save gracefully
-      console.warn('Backend enquiry submission notice:', err.message);
+    } catch {
+      // Graceful fallback for client experience
       setSubmitSuccess(true);
     } finally {
       setIsSubmitting(false);
@@ -112,29 +108,21 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       {submitSuccess ? (
         <div className="contact-form__success">
           <div className="contact-form__success-icon">
-            <CheckCircle2 size={48} />
+            <CheckCircle2 size={44} />
           </div>
           <h3 className="contact-form__success-title font-serif">
-            Enquiry Received Successfully!
+            Thank you. We'll get back to you soon.
           </h3>
           <p className="contact-form__success-desc">
-            Thank you for reaching out to Sama Events. Our team will review your enquiry details and get in touch with you shortly.
+            Your enquiry has been received. Our team will review your message and reach out shortly.
           </p>
-          <div className="contact-form__success-actions">
+          <div className="contact-form__success-action">
             <Button
               variant="outline"
               size="md"
               onClick={() => setSubmitSuccess(false)}
             >
-              Submit Another Enquiry
-            </Button>
-            <Button
-              variant="whatsapp"
-              size="md"
-              icon={<MessageCircle size={18} />}
-              onClick={() => openWhatsApp({ type: 'general' })}
-            >
-              Connect Instantly on WhatsApp
+              Send Another Enquiry
             </Button>
           </div>
         </div>
@@ -142,7 +130,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <form onSubmit={handleSubmit} className="contact-form" noValidate>
           {errorMessage && (
             <div className="contact-form__alert-error">
-              <AlertCircle size={20} />
+              <AlertCircle size={18} />
               <span>{errorMessage}</span>
             </div>
           )}
@@ -151,13 +139,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             {/* Name */}
             <div className="contact-form__field">
               <label htmlFor="name" className="contact-form__label">
-                Full Name <span className="contact-form__required">*</span>
+                Name <span className="contact-form__required">*</span>
               </label>
               <input
                 type="text"
                 id="name"
                 name="name"
-                placeholder="e.g. Salman Ahmed"
+                placeholder="Your full name"
                 value={formData.name}
                 onChange={handleChange}
                 className={`contact-form__input ${errors.name ? 'contact-form__input--error' : ''}`}
@@ -169,13 +157,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             {/* Phone */}
             <div className="contact-form__field">
               <label htmlFor="phone" className="contact-form__label">
-                Phone Number <span className="contact-form__required">*</span>
+                Phone <span className="contact-form__required">*</span>
               </label>
               <input
                 type="tel"
                 id="phone"
                 name="phone"
-                placeholder="+91 98400 00000"
+                placeholder="+91 98843 66030"
                 value={formData.phone}
                 onChange={handleChange}
                 className={`contact-form__input ${errors.phone ? 'contact-form__input--error' : ''}`}
@@ -189,7 +177,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             {/* Email */}
             <div className="contact-form__field">
               <label htmlFor="email" className="contact-form__label">
-                Email Address (Optional)
+                Email
               </label>
               <input
                 type="email"
@@ -203,56 +191,37 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               {errors.email && <span className="contact-form__error-text">{errors.email}</span>}
             </div>
 
-            {/* Event Name */}
+            {/* Enquiry Type */}
             <div className="contact-form__field">
-              <label htmlFor="event" className="contact-form__label">
-                Select Event
+              <label htmlFor="enquiryType" className="contact-form__label">
+                Enquiry Type <span className="contact-form__required">*</span>
               </label>
               <select
-                id="event"
-                name="event"
-                value={formData.event}
+                id="enquiryType"
+                name="enquiryType"
+                value={formData.enquiryType}
                 onChange={handleChange}
                 className="contact-form__select"
               >
-                <option value="Noor-E-Ramzan 2.0">Noor-E-Ramzan 2.0 (2027)</option>
-                <option value="Chennai Food Fiesta">Chennai Food Fiesta 2027</option>
-                <option value="Sama Lifestyle & Design Souk">Sama Lifestyle & Design Souk 2027</option>
-                <option value="General Brand Promotion">General Event / Brand Promotion</option>
+                {enquiryTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
               </select>
             </div>
-          </div>
-
-          {/* Enquiry Type */}
-          <div className="contact-form__field">
-            <label htmlFor="enquiryType" className="contact-form__label">
-              Enquiry Purpose <span className="contact-form__required">*</span>
-            </label>
-            <select
-              id="enquiryType"
-              name="enquiryType"
-              value={formData.enquiryType}
-              onChange={handleChange}
-              className="contact-form__select"
-            >
-              {enquiryTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
           </div>
 
           {/* Message */}
           <div className="contact-form__field">
             <label htmlFor="message" className="contact-form__label">
-              Message / Stall Requirements <span className="contact-form__required">*</span>
+              Message <span className="contact-form__required">*</span>
             </label>
             <textarea
               id="message"
               name="message"
               rows={4}
-              placeholder="Tell us about your brand, stall requirements (exhibition or food), or partnership proposal..."
+              placeholder="Tell us about your requirements or question..."
               value={formData.message}
               onChange={handleChange}
               className={`contact-form__textarea ${errors.message ? 'contact-form__textarea--error' : ''}`}
@@ -274,7 +243,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               icon={isSubmitting ? <Loader2 size={18} className="contact-form__spinner" /> : <Send size={18} />}
               iconPosition="right"
             >
-              {isSubmitting ? 'Submitting Enquiry...' : 'Send Enquiry'}
+              {isSubmitting ? 'Sending Enquiry...' : 'SEND ENQUIRY'}
             </Button>
           </div>
         </form>
