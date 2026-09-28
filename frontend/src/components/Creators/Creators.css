@@ -1,0 +1,242 @@
+/* ==========================================================================
+   CREATORS & INFLUENCERS SECTION STYLES
+   Editorial Row on Desktop (4 cols), Tablet (3 cols), Horizontal Swipe Mobile
+   ========================================================================== */
+
+.creators-section {
+  background-color: var(--color-dark-900, #0B120E);
+  color: var(--color-cream-50, #FAF8F5);
+  padding: clamp(3.5rem, 5vw, 5rem) 0;
+  border-top: 1px solid rgba(191, 159, 89, 0.12);
+  border-bottom: 1px solid rgba(191, 159, 89, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header */
+.creators__header {
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  text-align: left;
+}
+
+.creators__eyebrow {
+  display: block;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-400, #BF9F59);
+  margin-bottom: 0.35rem;
+}
+
+.creators__title {
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-weight: 500;
+  color: #FAF8F5;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   1. DESKTOP GRID (> 1100px: 4 columns; 769-1100px: 3 columns)
+   ========================================================================== */
+
+.creators__desktop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.creators__mobile-view {
+  display: none;
+}
+
+/* Card Design */
+.creators__card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #070e0a;
+  border: 1px solid rgba(191, 159, 89, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.creators__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(191, 159, 89, 0.45);
+}
+
+.creators__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.creators__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.creators__card:hover .creators__img {
+  transform: scale(1.035);
+}
+
+.creators__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(6, 12, 9, 0.95) 0%,
+    rgba(6, 12, 9, 0.65) 35%,
+    rgba(6, 12, 9, 0.15) 60%,
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.creators__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.15rem 1.25rem 1rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.creators__name {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #FAF8F5;
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.creators__handle {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-gold-400, #BF9F59);
+}
+
+.creators__tag {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.65);
+}
+
+/* ==========================================================================
+   2. TABLET (769px–1100px: 3 columns)
+   ========================================================================== */
+
+@media (max-width: 1100px) and (min-width: 769px) {
+  .creators__desktop-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   3. MOBILE (<= 768px: Horizontal Swipe Carousel)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .creators-section {
+    padding: 38px 0 34px 0 !important;
+  }
+
+  .creators__header {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+
+  .creators__desktop-grid {
+    display: none !important;
+  }
+
+  .creators__mobile-view {
+    display: block !important;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .creators__mobile-track {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 12px !important;
+    padding-left: 16px !important;
+    padding-right: 48px !important;
+    scroll-padding-left: 16px;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .creators__mobile-track::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .creators__card--mobile {
+    flex: 0 0 calc(100vw - 72px) !important;
+    max-width: 290px !important;
+    min-width: 260px !important;
+    height: 320px !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: normal !important;
+    box-sizing: border-box !important;
+  }
+
+  .creators__card--mobile .creators__media {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .creators__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .creators__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(250, 248, 245, 0.25);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .creators__dot--active {
+    width: 18px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-gold-400, #BF9F59);
+    box-shadow: 0 0 8px rgba(191, 159, 89, 0.4);
+  }
+}

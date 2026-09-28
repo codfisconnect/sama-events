@@ -16,38 +16,38 @@ export const About: React.FC = () => {
     {
       title: 'Food Festivals',
       label: 'CULINARY',
-      desc: 'Large-scale food courts, live cooking counters, and diverse culinary showcases.',
-      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80',
+      desc: 'Large-scale culinary gatherings, specialty street foods, live kitchen counters, and family dining courts with high-capacity hospitality standards.',
+      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80',
     },
     {
-      title: 'Festivals & Celebrations',
-      label: 'FESTIVE',
-      desc: 'Atmospheric festive gatherings honoring tradition, festive illumination, and community joy.',
-      image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+      title: 'Shopping & Lifestyle',
+      label: 'LIFESTYLE & RETAIL',
+      desc: 'Boutique fashion pop-ups, artisanal apparel, festive collections, jewellery, fragrances, and home decor by curated independent designers.',
+      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=900&q=80',
     },
     {
       title: 'Exhibitions',
       label: 'COMMERCIAL',
-      desc: 'High-footfall retail pavilions connecting brands with thousands of active visitors.',
-      image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=80',
+      desc: 'High-visibility commercial retail and brand pavilions structured for seamless visitor flow, brand activation, and high-conversion footfall.',
+      image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=80',
     },
     {
-      title: 'Shopping & Lifestyle',
-      label: 'BOUTIQUE',
-      desc: 'Curated fashion pop-ups, artisanal clothing, jewellery, fragrances, and home decor.',
-      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80',
+      title: 'Cultural Events',
+      label: 'CULTURE & HERITAGE',
+      desc: 'Atmospheric festive gatherings honoring heritage, authentic festive illumination, cultural celebrations, and shared community traditions.',
+      image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80',
     },
     {
-      title: 'Cultural Experiences',
-      label: 'CULTURE',
-      desc: 'Shared moments of celebration, heritage, hospitality, and seasonal festivities.',
-      image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+      title: 'Business Events',
+      label: 'ENTERPRISE',
+      desc: 'Curated enterprise gatherings, industry trade pavilions, brand launch showcases, partner networking forums, and executive summits.',
+      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=80',
     },
     {
       title: 'Community Events',
       label: 'COMMUNITY',
-      desc: 'Family-friendly environments with comfortable covered seating and dedicated kids play areas.',
-      image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80',
+      desc: 'Welcoming family environments featuring comfortable covered seating, children’s amusement zones, food walks, and community entertainment.',
+      image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80',
     },
   ];
 
@@ -99,14 +99,14 @@ export const About: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. CAPABILITY CATEGORIES */}
-      <section className="section-cream about-capabilities-section">
+      {/* 3. WHAT WE CREATE — Capabilities & Event Formats */}
+      <section className="section-cream about-capabilities-section" aria-label="What We Create">
         <div className="container">
-          <div className="campaign-section-header">
-            <span className="eyebrow-label">WHAT SAMA EVENTS CREATES</span>
-            <h2 className="campaign-section-title font-serif">Our Capabilities</h2>
-            <p className="campaign-section-sub">
-              Diverse event formats curated with premium production and community warmth.
+          <div className="about-capabilities-header">
+            <span className="eyebrow-label">OUR CAPABILITIES</span>
+            <h2 className="about-capabilities-title font-serif">What We Create</h2>
+            <p className="about-capabilities-sub">
+              From large-scale culinary festivals and vibrant lifestyle showcases to high-impact trade exhibitions and community gatherings.
             </p>
           </div>
 

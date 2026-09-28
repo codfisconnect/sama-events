@@ -7,6 +7,7 @@ import NoorERamzan1 from '../pages/NoorERamzan1/NoorERamzan1';
 import About from '../pages/About/About';
 import Gallery from '../pages/Gallery/Gallery';
 import Contact from '../pages/Contact/Contact';
+import SpecialAppearancesPage from '../pages/SpecialAppearances/SpecialAppearances';
 import NotFound from '../pages/NotFound/NotFound';
 
 export const AppRoutes: React.FC = () => {
@@ -16,6 +17,7 @@ export const AppRoutes: React.FC = () => {
       <Route path="/events" element={<Events />} />
       <Route path="/events/noor-e-ramzan-1" element={<NoorERamzan1 />} />
       <Route path="/events/:eventSlug" element={<EventDetails />} />
+      <Route path="/special-appearances" element={<SpecialAppearancesPage />} />
       <Route path="/about" element={<About />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/contact" element={<Contact />} />

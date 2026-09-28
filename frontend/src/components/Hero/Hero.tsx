@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { brandImages } from '../../data/images';
 import Button from '../Button/Button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './Hero.css';
 
 export interface HeroProps {

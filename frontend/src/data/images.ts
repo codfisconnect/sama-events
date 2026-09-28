@@ -15,7 +15,7 @@ export const brandImages = {
   favicon: '/favicon.svg',
 
   // Brand Heroes & Visual Backdrops
-  homeHeroBg: '/images/branding/Stall-pic.jpeg', // Grand festive celebratory gathering
+  homeHeroBg: '/images/branding/Stall-pic.png', // Grand festive celebratory gathering
   aboutHeroBg: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1920&q=85',
   contactHeroBg: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1920&q=85',
   galleryHeroBg: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1920&q=85',
