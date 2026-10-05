@@ -7,10 +7,32 @@ import Creators from '../../components/Creators/Creators';
 import Sponsors from '../../components/Sponsors/Sponsors';
 import { getFeaturedEvent, getUpcomingEvents } from '../../data/events';
 import { noorERamzan1Images } from '../../data/images';
-import { galleryData } from '../../data/gallery';
 import { ArrowRight, Calendar, MapPin, MessageCircle } from 'lucide-react';
 import { openWhatsApp } from '../../utils/whatsapp';
 import './Home.css';
+
+const celebrationHighlights = [
+  {
+    id: 'highlight-pakoda-boyz',
+    name: 'Pakoda Boyz',
+    image: '/images/influencers/pakoda-boyz.jpg',
+  },
+  {
+    id: 'highlight-jaffer-nation',
+    name: 'Jaffer Nation',
+    image: '/images/influencers/jaffer-nation.jpg',
+  },
+  {
+    id: 'highlight-f5zeevlogs',
+    name: 'f5zeeVlogs',
+    image: '/images/influencers/f5zeevlogs.jpg',
+  },
+  {
+    id: 'highlight-officialtahir',
+    name: 'OfficialTahir',
+    image: '/images/influencers/official-tahir.jpg',
+  },
+];
 
 export const Home: React.FC = () => {
   const featuredEvent = getFeaturedEvent();
@@ -251,15 +273,15 @@ export const Home: React.FC = () => {
           </div>
 
           <div className="home-moments__collage">
-            {galleryData.slice(0, 4).map((img) => (
-              <Link to="/gallery" key={img.id} className="home-moments__item" aria-label={`View ${img.title}`}>
+            {celebrationHighlights.map((item) => (
+              <Link to="/gallery" key={item.id} className="home-moments__item" aria-label={`View ${item.name}`}>
                 <img
-                  src={img.url}
-                  alt={img.title}
+                  src={item.image}
+                  alt={item.name}
                   loading="lazy"
                 />
                 <div className="home-moments__caption-overlay">
-                  <span>{img.title}</span>
+                  <span>{item.name}</span>
                 </div>
               </Link>
             ))}
