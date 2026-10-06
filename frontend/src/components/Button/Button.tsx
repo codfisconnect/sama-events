@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Button.css';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,6 +9,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   children: React.ReactNode;
+  to?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,6 +23,10 @@ export const Button: React.FC<ButtonProps> = ({
   iconPosition = 'left',
   children,
   className = '',
+  to,
+  href,
+  target,
+  rel,
   ...props
 }) => {
   const classes = [
@@ -30,11 +39,33 @@ export const Button: React.FC<ButtonProps> = ({
     .filter(Boolean)
     .join(' ');
 
-  return (
-    <button className={classes} {...props}>
+  const content = (
+    <>
       {icon && iconPosition === 'left' && <span className="sama-btn__icon">{icon}</span>}
       <span className="sama-btn__text">{children}</span>
       {icon && iconPosition === 'right' && <span className="sama-btn__icon">{icon}</span>}
+    </>
+  );
+
+  if (to) {
+    return (
+      <Link to={to} className={classes} onClick={props.onClick as any}>
+        {content}
+      </Link>
+    );
+  }
+
+  if (href) {
+    return (
+      <a href={href} className={classes} target={target} rel={rel} onClick={props.onClick as any}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button className={classes} {...props}>
+      {content}
     </button>
   );
 };

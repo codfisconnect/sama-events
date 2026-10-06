@@ -74,6 +74,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     setErrorMessage(null);
 
     if (!validate()) {
@@ -83,21 +85,31 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     setIsSubmitting(true);
 
     try {
-      await EnquiryService.submitEnquiry({
+      const response = await EnquiryService.submitEnquiry({
         ...formData,
         event: 'General / Sama Events',
       });
-      setSubmitSuccess(true);
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        enquiryType: initialType,
-        message: '',
-      });
+
+      if (response && response.success !== false) {
+        setSubmitSuccess(true);
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          enquiryType: initialType,
+          message: '',
+        });
+      } else {
+        setSubmitSuccess(false);
+        setErrorMessage(
+          response?.error || 'Unable to submit your enquiry right now. Please try again or contact us on WhatsApp.'
+        );
+      }
     } catch {
-      // Graceful fallback for client experience
-      setSubmitSuccess(true);
+      setSubmitSuccess(false);
+      setErrorMessage(
+        'Unable to submit your enquiry right now. Please try again or contact us on WhatsApp.'
+      );
     } finally {
       setIsSubmitting(false);
     }

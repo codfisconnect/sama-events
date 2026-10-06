@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { noorERamzan1Images } from '../../data/images';
 import Button from '../../components/Button/Button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './NoorERamzan1.css';
 
 export const NoorERamzan1: React.FC = () => {
@@ -111,11 +110,9 @@ export const NoorERamzan1: React.FC = () => {
               Noor-E-Ramzan returns bigger and grander from 25 February to 08 March 2027 at YMCA Royapettah.
             </p>
             <div className="noor1-bridge__action">
-              <Link to="/events/noor-e-ramzan-2">
-                <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
-                  EXPLORE NOOR-E-RAMZAN 2.0
-                </Button>
-              </Link>
+              <Button to="/events/noor-e-ramzan-2" variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                EXPLORE NOOR-E-RAMZAN 2.0
+              </Button>
             </div>
           </div>
         </div>

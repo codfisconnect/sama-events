@@ -1,6 +1,7 @@
 export type EnquiryType =
   | 'Event Enquiry'
   | 'Stall Booking'
+  | 'Stall Enquiry'
   | 'Sponsorship'
   | 'Partnership'
   | 'General Enquiry';

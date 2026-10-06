@@ -6,7 +6,6 @@ import SpecialAppearances from '../../components/SpecialAppearances/SpecialAppea
 import Creators from '../../components/Creators/Creators';
 import Sponsors from '../../components/Sponsors/Sponsors';
 import { getFeaturedEvent, getUpcomingEvents } from '../../data/events';
-import { noorERamzan1Images } from '../../data/images';
 import { ArrowRight, Calendar, MapPin, MessageCircle } from 'lucide-react';
 import { openWhatsApp } from '../../utils/whatsapp';
 import './Home.css';
@@ -190,62 +189,7 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. FROM 1.0 TO 2.0 — Authentic Visual Storytelling */}
-      <section className="section-festive home-story">
-        <div className="container">
-          <Link
-            to="/events/noor-e-ramzan-1"
-            className="home-story__link"
-            aria-label="Explore Noor-E-Ramzan 1.0 moments"
-          >
-            <div className="home-story__grid">
-              <div className="home-story__narrative">
-                <span className="eyebrow-label home-story__eyebrow">THE JOURNEY</span>
-                <h2 className="home-story__title font-serif">From 1.0 to 2.0</h2>
-
-                <div className="home-story__metadata">
-                  <span className="home-story__edition">NOOR-E-RAMZAN 1.0</span>
-                  <span className="home-story__status">2026 • SUCCESSFULLY COMPLETED</span>
-                </div>
-
-                <p className="home-story__statement font-serif">
-                  "A successful first edition. Now returning as 2.0."
-                </p>
-              </div>
-
-              {/* Visual Collage */}
-              <div className="home-story__visual-box">
-                <div className="home-story__lead-img-wrap">
-                  <img
-                    src={noorERamzan1Images.hero}
-                    alt="Noor-E-Ramzan 1.0 Celebration"
-                    className="home-story__lead-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="home-story__sub-imgs">
-                  <div className="home-story__sub-img-frame">
-                    <img
-                      src={noorERamzan1Images.foodCourt}
-                      alt="Food court moments"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="home-story__sub-img-frame">
-                    <img
-                      src={noorERamzan1Images.crowdAtmosphere}
-                      alt="Community gathering"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* 5. SPECIAL APPEARANCES — Authentic Celebrity & Distinguished Guest Moments */}
+      {/* 4. SPECIAL APPEARANCES — Authentic Celebrity & Distinguished Guest Moments */}
       <SpecialAppearances />
 
       {/* 6. CREATORS & INFLUENCERS — Responsive Row & Mobile Carousel */}
@@ -301,11 +245,9 @@ export const Home: React.FC = () => {
               Let's create something memorable.
             </p>
             <div className="home-final-cta__actions">
-              <Link to="/contact">
-                <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
-                  TALK TO SAMA EVENTS
-                </Button>
-              </Link>
+              <Button to="/contact" variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                TALK TO SAMA EVENTS
+              </Button>
               <Button
                 variant="whatsapp"
                 size="lg"

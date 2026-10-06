@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { Home, Compass } from 'lucide-react';
 import './NotFound.css';
@@ -14,16 +13,12 @@ export const NotFound: React.FC = () => {
           The event page or resource you are looking for has moved or does not exist. Explore our current festival lineup or return to the homepage.
         </p>
         <div className="not-found-page__actions">
-          <Link to="/">
-            <Button variant="primary" size="lg" icon={<Home size={18} />}>
-              Return to Homepage
-            </Button>
-          </Link>
-          <Link to="/events">
-            <Button variant="outline" size="lg" icon={<Compass size={18} />}>
-              Explore Events
-            </Button>
-          </Link>
+          <Button to="/" variant="primary" size="lg" icon={<Home size={18} />}>
+            Return to Homepage
+          </Button>
+          <Button to="/events" variant="outline" size="lg" icon={<Compass size={18} />}>
+            Explore Events
+          </Button>
         </div>
       </div>
     </div>

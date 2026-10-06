@@ -57,15 +57,14 @@ export const Navbar: React.FC = () => {
 
         {/* Header Right Action CTA */}
         <div className="sama-navbar__actions">
-          <Link to="/events/noor-e-ramzan-2">
-            <Button
-              variant="primary"
-              size="sm"
-              className="sama-navbar__cta-btn"
-            >
-              NOOR-E-RAMZAN 2.0
-            </Button>
-          </Link>
+          <Button
+            to="/events/noor-e-ramzan-2"
+            variant="primary"
+            size="sm"
+            className="sama-navbar__cta-btn"
+          >
+            NOOR-E-RAMZAN 2.0
+          </Button>
 
           {/* Mobile Hamburger Toggle Button */}
           <button
@@ -104,15 +103,15 @@ export const Navbar: React.FC = () => {
           </ul>
 
           <div className="sama-navbar__mobile-actions">
-            <Link to="/events/noor-e-ramzan-2" onClick={closeMobileMenu}>
-              <Button
-                variant="primary"
-                size="md"
-                fullWidth
-              >
-                NOOR-E-RAMZAN 2.0
-              </Button>
-            </Link>
+            <Button
+              to="/events/noor-e-ramzan-2"
+              onClick={closeMobileMenu}
+              variant="primary"
+              size="md"
+              fullWidth
+            >
+              NOOR-E-RAMZAN 2.0
+            </Button>
             <Button
               variant="whatsapp"
               size="md"

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { brandImages } from '../../data/images';
 import Button from '../Button/Button';
 import { ArrowRight } from 'lucide-react';
@@ -33,27 +32,25 @@ export const Hero: React.FC<HeroProps> = ({
           <p className="sama-hero__tagline">{tagline}</p>
 
           <div className="sama-hero__actions">
-            <Link to="/events">
-              <Button
-                variant="outline"
-                size="lg"
-                className="sama-hero__btn-explore"
-              >
-                EXPLORE EVENTS
-              </Button>
-            </Link>
+            <Button
+              to="/events"
+              variant="outline"
+              size="lg"
+              className="sama-hero__btn-explore"
+            >
+              EXPLORE EVENTS
+            </Button>
 
-            <Link to="/events/noor-e-ramzan-2">
-              <Button
-                variant="primary"
-                size="lg"
-                icon={<ArrowRight size={18} />}
-                iconPosition="right"
-                className="sama-hero__btn-flagship"
-              >
-                NOOR-E-RAMZAN 2.0
-              </Button>
-            </Link>
+            <Button
+              to="/events/noor-e-ramzan-2"
+              variant="primary"
+              size="lg"
+              icon={<ArrowRight size={18} />}
+              iconPosition="right"
+              className="sama-hero__btn-flagship"
+            >
+              NOOR-E-RAMZAN 2.0
+            </Button>
           </div>
         </div>
       </div>
