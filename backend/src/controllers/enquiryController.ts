@@ -5,6 +5,7 @@ import { CreateEnquiryInput, EnquiryType } from '../types/enquiryTypes';
 const validEnquiryTypes: EnquiryType[] = [
   'Event Enquiry',
   'Stall Booking',
+  'Stall Enquiry',
   'Sponsorship',
   'Partnership',
   'General Enquiry',
@@ -47,12 +48,16 @@ export class EnquiryController {
         return;
       }
 
+      // Map 'Stall Enquiry' to 'Stall Booking' to ensure database consistency
+      const normalizedType: EnquiryType =
+        enquiryType === 'Stall Enquiry' ? 'Stall Booking' : (enquiryType as EnquiryType);
+
       const input: CreateEnquiryInput = {
         name: name.trim(),
         phone: phone.trim(),
         email: email ? email.trim() : undefined,
         event: event ? String(event).trim() : 'Noor-E-Ramzan 2.0',
-        enquiryType: enquiryType as EnquiryType,
+        enquiryType: normalizedType,
         message: message.trim(),
       };
 

@@ -7,7 +7,11 @@ export class EnquiryService {
    */
   public static async submitEnquiry(data: EnquiryFormData): Promise<EnquirySubmissionResponse> {
     try {
-      const response = await api.post<EnquirySubmissionResponse>('/enquiries', data);
+      const payload = {
+        ...data,
+        enquiryType: data.enquiryType === 'Stall Enquiry' ? 'Stall Booking' : data.enquiryType,
+      };
+      const response = await api.post<EnquirySubmissionResponse>('/enquiries', payload);
       return response;
     } catch (error: any) {
       console.warn('API submission notice:', error.message);

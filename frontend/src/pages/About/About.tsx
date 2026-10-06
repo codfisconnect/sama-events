@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { brandImages } from '../../data/images';
-import { siteData } from '../../data/siteData';
 import Button from '../../components/Button/Button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './About.css';
 
 export const About: React.FC = () => {
@@ -139,16 +137,12 @@ export const About: React.FC = () => {
               Explore our current event roster or speak with our team regarding brand showcases and partnerships.
             </p>
             <div className="about-editorial-cta__actions">
-              <Link to="/events">
-                <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
-                  EXPLORE EVENTS
-                </Button>
-              </Link>
-              <Link to="/contact">
-                <Button variant="outline" size="lg">
-                  TALK TO SAMA EVENTS
-                </Button>
-              </Link>
+              <Button to="/events" variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                EXPLORE EVENTS
+              </Button>
+              <Button to="/contact" variant="outline" size="lg">
+                TALK TO SAMA EVENTS
+              </Button>
             </div>
           </div>
         </div>

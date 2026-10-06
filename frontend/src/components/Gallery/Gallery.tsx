@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GalleryImageItem } from '../../types/gallery';
 import { Eye, X } from 'lucide-react';
 import './Gallery.css';
@@ -14,6 +14,17 @@ export const Gallery: React.FC<GalleryProps> = ({
 }) => {
   const [activeFilter, setActiveFilter] = useState<string>(defaultCategory);
   const [selectedImage, setSelectedImage] = useState<GalleryImageItem | null>(null);
+
+  // Close lightbox on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedImage) {
+        setSelectedImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage]);
 
   // Exact categories specified in Section 18
   const categories = [
@@ -51,8 +62,17 @@ export const Gallery: React.FC<GalleryProps> = ({
         {filteredImages.map((img) => (
           <div
             key={img.id}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${img.title}`}
             className={`sama-gallery-comp__card sama-gallery-comp__card--${img.aspectRatio || 'square'}`}
             onClick={() => setSelectedImage(img)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setSelectedImage(img);
+              }
+            }}
           >
             <img
               src={img.url}

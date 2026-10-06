@@ -48,7 +48,7 @@ export const siteData: SiteConfig = {
   },
   socialLinks: {
     instagram: 'https://www.instagram.com/noor.e.ramzan?stkn=Mnc4OWx0NGtwbXFv',
-    facebook: 'https://www.instagram.com/noor.e.ramzan?stkn=Mnc4OWx0NGtwbXFv',
+    facebook: '', // Official Facebook page not yet available/verified
   },
   eventCompanyHighlights: [
     {

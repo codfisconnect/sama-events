@@ -1,35 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getEventBySlug, getFeaturedEvent } from '../../data/events';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getEventBySlug } from '../../data/events';
 import StallBooking from '../../components/StallBooking/StallBooking';
 import StallLayout from '../../components/StallLayout/StallLayout';
 import Button from '../../components/Button/Button';
+import NotFound from '../NotFound/NotFound';
 import { openWhatsApp } from '../../utils/whatsapp';
 import {
-  Calendar,
-  MapPin,
-  Sparkles,
   Store,
   MessageCircle,
   ExternalLink,
-  Utensils,
-  ShoppingBag,
-  Users,
-  Compass,
-  ArrowRight,
-  Smile,
 } from 'lucide-react';
 import './EventDetails.css';
 
 export const EventDetails: React.FC = () => {
   const { eventSlug } = useParams<{ eventSlug?: string }>();
   const slug = eventSlug || 'noor-e-ramzan-2';
-  const event = getEventBySlug(slug) || getFeaturedEvent();
+  const event = getEventBySlug(slug);
 
   useEffect(() => {
-    document.title = `${event.title} | Sama Events`;
-    window.scrollTo(0, 0);
+    if (event) {
+      document.title = `${event.title} | Sama Events`;
+      window.scrollTo(0, 0);
+    }
   }, [event]);
+
+  if (!event) {
+    return <NotFound />;
+  }
 
   // What to Expect concise visual tiles
   const expectations = [
@@ -108,11 +106,9 @@ export const EventDetails: React.FC = () => {
 
             <div className="campaign-hero__actions">
               {event.stallInfo && (
-                <a href="#stalls">
-                  <Button variant="primary" size="lg" icon={<Store size={18} />}>
-                    STALL ENQUIRY
-                  </Button>
-                </a>
+                <Button href="#stalls" variant="primary" size="lg" icon={<Store size={18} />}>
+                  STALL ENQUIRY
+                </Button>
               )}
               <Button
                 variant="whatsapp"
@@ -251,15 +247,17 @@ export const EventDetails: React.FC = () => {
                 {event.address}
               </p>
               <div className="campaign-location__cta">
-                <a
+                <Button
                   href={event.googleMapsUrl || `https://maps.google.com/?q=${encodeURIComponent(event.venue + ' ' + event.city)}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  variant="outline"
+                  size="md"
+                  icon={<ExternalLink size={16} />}
+                  iconPosition="right"
                 >
-                  <Button variant="outline" size="md" icon={<ExternalLink size={16} />} iconPosition="right">
-                    OPEN IN GOOGLE MAPS
-                  </Button>
-                </a>
+                  OPEN IN GOOGLE MAPS
+                </Button>
               </div>
             </div>
           </div>

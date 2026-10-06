@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { noorERamzan1Images } from '../../data/images';
 import Button from '../Button/Button';
 import { ArrowRight, Sparkles, Image as ImageIcon, Eye, X } from 'lucide-react';
@@ -134,16 +133,12 @@ export const PreviousEvent: React.FC = () => {
               </p>
             </div>
             <div className="previous-event__bridge-actions">
-              <Link to="/events/noor-e-ramzan-2">
-                <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
-                  Explore Noor-E-Ramzan 2.0
-                </Button>
-              </Link>
-              <Link to="/gallery">
-                <Button variant="outline" size="lg" icon={<ImageIcon size={18} />}>
-                  View Full Gallery
-                </Button>
-              </Link>
+              <Button to="/events/noor-e-ramzan-2" variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                Explore Noor-E-Ramzan 2.0
+              </Button>
+              <Button to="/gallery" variant="outline" size="lg" icon={<ImageIcon size={18} />}>
+                View Full Gallery
+              </Button>
             </div>
           </div>
         </div>

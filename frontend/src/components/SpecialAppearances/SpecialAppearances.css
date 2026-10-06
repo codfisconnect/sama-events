@@ -134,7 +134,10 @@
 
 /* Precise focal point adjustments for authentic photography */
 .special-appearances__item--featured .special-appearances__img {
-  object-position: center 20%;
+  height: 680px;
+  max-height: 680px;
+  object-fit: cover;
+  object-position: 40% 20%;
 }
 
 .special-appearances__item--tile-1 .special-appearances__img {

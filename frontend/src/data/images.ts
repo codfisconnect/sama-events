@@ -38,7 +38,7 @@ export const noorERamzan2Images = {
   card: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80',
   venue: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
   stallLayout: '/images/stall-layout-ymca-plan.jpg',
-  stallExhibitionSample: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+  stallExhibitionSample: '/images/branding/Stall-pic.png',
   stallFoodSample: '/images/noor-e-ramzan-1/food-hero.jpeg',
 };
 
@@ -55,7 +55,7 @@ export const noorERamzan1Images = {
 
 export const futureEventImages = {
   chennaiFoodFiesta: '/images/noor-e-ramzan-1/food-hero.jpeg',
-  festiveSouk: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+  festiveSouk: '/images/noor-e-ramzan-1/Upcoming-events-life-style.png',
   globalLifestyleExpo: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80',
 };
 
