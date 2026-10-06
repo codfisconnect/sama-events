@@ -260,7 +260,7 @@ export const Home: React.FC = () => {
           <div className="home-moments__header-row">
             <div>
               <span className="eyebrow-label">CAPTURED MOMENTS</span>
-              <h2 className="home-section-title font-serif">Celebration Highlights</h2>
+              <h2 className="home-section-title font-serif">Influencers</h2>
             </div>
             <Link
               to="/gallery"
