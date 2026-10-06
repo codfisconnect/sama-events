@@ -935,6 +935,7 @@
 
   .home-moments {
     padding: 44px 0 !important;
+    overflow-x: clip;
   }
   .home-moments__header-row {
     flex-direction: row;
@@ -943,17 +944,41 @@
     margin-bottom: 18px;
   }
   .home-moments__collage {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 14px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 6px;
+    scroll-padding-left: 16px;
+  }
+  .home-moments__collage::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
   .home-moments__item {
-    aspect-ratio: 1 / 1;
-    border-radius: 10px;
+    flex: 0 0 clamp(220px, 66vw, 250px);
+    width: clamp(220px, 66vw, 250px);
+    min-width: clamp(220px, 66vw, 250px);
+    aspect-ratio: 4 / 5;
+    border-radius: 12px;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
   }
   .home-moments__caption-overlay {
     opacity: 1;
-    padding: 0.75rem;
-    font-size: 0.75rem;
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
     background: linear-gradient(180deg, transparent 40%, rgba(6, 12, 10, 0.85) 100%);
   }
 
